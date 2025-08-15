@@ -38,3 +38,4 @@ ServerData/
 .vs/TileMap_Unity/xs/project-cache/gpm_ui_editor-Debug.json
 UserSettings/EditorUserSettings.asset
 UserSettings/Layouts/*
+.idea
