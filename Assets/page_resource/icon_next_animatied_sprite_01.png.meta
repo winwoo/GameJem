@@ -1172,7 +1172,49 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      icon_next_animatied_sprite_01_0: 4830528140645139968
+      icon_next_animatied_sprite_01_1: 4715645093486656431
+      icon_next_animatied_sprite_01_10: -3623636452132889112
+      icon_next_animatied_sprite_01_11: 3782280862230807086
+      icon_next_animatied_sprite_01_12: 1317276845952833762
+      icon_next_animatied_sprite_01_13: -2939602633251245220
+      icon_next_animatied_sprite_01_14: 3961005468665259714
+      icon_next_animatied_sprite_01_15: 8786821799148473051
+      icon_next_animatied_sprite_01_16: 1088868753186784287
+      icon_next_animatied_sprite_01_17: 1413917921018920829
+      icon_next_animatied_sprite_01_18: -6518813213826336261
+      icon_next_animatied_sprite_01_19: 998725583748816826
+      icon_next_animatied_sprite_01_2: -2004590936332181176
+      icon_next_animatied_sprite_01_20: -4334566957294097511
+      icon_next_animatied_sprite_01_21: 6903438793593631639
+      icon_next_animatied_sprite_01_22: 5665295130063523025
+      icon_next_animatied_sprite_01_23: 7107291112350879314
+      icon_next_animatied_sprite_01_24: 2536162580092948507
+      icon_next_animatied_sprite_01_25: -2696756773071884600
+      icon_next_animatied_sprite_01_26: 8097147963485516577
+      icon_next_animatied_sprite_01_27: -8191736827798949080
+      icon_next_animatied_sprite_01_28: -8272412879425072378
+      icon_next_animatied_sprite_01_29: -5810248166619235263
+      icon_next_animatied_sprite_01_3: 41171309955098455
+      icon_next_animatied_sprite_01_30: -7007410942667286360
+      icon_next_animatied_sprite_01_31: 5192880264775586800
+      icon_next_animatied_sprite_01_32: 6676470821918978076
+      icon_next_animatied_sprite_01_33: -4189224461595177047
+      icon_next_animatied_sprite_01_34: 584444616784811874
+      icon_next_animatied_sprite_01_35: 2983844126794861686
+      icon_next_animatied_sprite_01_36: -5196943588271874005
+      icon_next_animatied_sprite_01_37: -2269164762222359519
+      icon_next_animatied_sprite_01_38: 4186204911350775485
+      icon_next_animatied_sprite_01_39: -6413561585503363612
+      icon_next_animatied_sprite_01_4: 6458854153835713031
+      icon_next_animatied_sprite_01_40: 1031721115651418862
+      icon_next_animatied_sprite_01_41: 6701252521557753650
+      icon_next_animatied_sprite_01_5: -8458169919553710339
+      icon_next_animatied_sprite_01_6: -1489678745220756285
+      icon_next_animatied_sprite_01_7: -3386059537103197857
+      icon_next_animatied_sprite_01_8: -5817537837273225270
+      icon_next_animatied_sprite_01_9: 1988973835152519917
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

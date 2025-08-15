@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "page_overwhelming_positive(\uC555\uAE0D)_0": -5722075429977203419
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

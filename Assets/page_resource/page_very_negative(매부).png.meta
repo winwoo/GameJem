@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "page_very_negative(\uB9E4\uBD80)_0": -4857035141594003808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
