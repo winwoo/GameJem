@@ -24,9 +24,14 @@ public class SceneManager : BaseManager
         UnityEngine.SceneManagement.SceneManager.LoadScene(GetSceneName(type));
     }
 
+    public async UniTask LoadSceneAsync(Define.Scene type)
+    {
+        await UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(GetSceneName(type));
+    }
+
     private string GetSceneName(Define.Scene type)
     {
         string name = System.Enum.GetName(typeof(Define.Scene), type);
-        return name;
+        return $"0{(int)type}_{name}";
     }
 }

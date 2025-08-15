@@ -24,6 +24,7 @@ public abstract class UIBase : MonoBehaviour
     public virtual async UniTask ShowAsync(object args = null) { SetActive(true); await UniTask.Yield(); }
     public virtual async UniTask HideAsync() { SetActive(false); await UniTask.Yield(); }
     public virtual void OnDestroyView() { }
+
     public async virtual UniTask CloseUI()
     {
         await Managers.UI.Close(this);

@@ -31,14 +31,6 @@ public class Managers : MonoBehaviour
         SetResolution(1920, 1080); // 원하는 해상도로 설정
     }
 
-    private async void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            await UI.Open<UISample>();
-        }
-    }
-
     #region Init
     public void SetResolution(int width, int height)
     {
