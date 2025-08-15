@@ -5,18 +5,22 @@ namespace MainBattleScene
 
     public class MainBattleBoss : MonoBehaviour
     {
-        [SerializeField]
-        private BossBehaviour[] _bossBehaviours;
-
-        public void PlayBehaviour(BossBehaviourType behaviourType)
+        [System.Serializable]
+        public class BossBasicStats
         {
-            foreach (var bossBehaviour in _bossBehaviours)
-            {
-                if (bossBehaviour.BehaviourType == behaviourType)
-                {
-                    bossBehaviour.PlayBehaviour();
-                }
-            }
+            [SerializeField] public int MaxHealth;
+            [SerializeField] public int CurrentHealth;
+            [SerializeField] public float BossMoveSpeed;
+            [SerializeField] public bool CanMove = true;
         }
+
+        [System.Serializable]
+        public class BossDefaultMoveStats
+        {
+            [SerializeField]
+            private float _moveSpeed = 5f;
+        }
+        
+
     }
 }
