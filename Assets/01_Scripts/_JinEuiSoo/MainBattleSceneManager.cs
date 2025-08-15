@@ -8,7 +8,7 @@ namespace MainBattleScene
         public static MainBattleSceneManager Instance => _instance;
         static MainBattleSceneManager _instance;
 
-        public PlayerCharacterStats PlayerCharacterStats;
+        public MainBattlePlayerCharacter.PlayerCharacterStats PlayerCharacterStats;
         
         private void Awake()
         {
@@ -36,11 +36,6 @@ namespace MainBattleScene
     }
     
     
-    [System.Serializable]
-    public class PlayerCharacterStats
-    {
-        [SerializeField] public int MaxHealth;
-        [SerializeField] public int CurrentHealth;
-    }
+
 
 }

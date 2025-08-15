@@ -23,19 +23,29 @@ namespace MainBattleScene
                 inputVetor.y -= 1;
             }
             
-            if (Input.GetKey(KeyCode.W) == true)
+            if (Input.GetKey(KeyCode.D) == true)
             {
-                
+                inputVetor.x += 1;
             }
             
-            if (Input.GetKey(KeyCode.W) == true)
+            if (Input.GetKey(KeyCode.A) == true)
             {
-                
+                inputVetor.x -= 1;
             }
+
+            inputVetor *= 1f;
+            
+            _rigidbody.linearVelocity = inputVetor;
             
             
             
-            
+        }
+        
+        [System.Serializable]
+        public class PlayerCharacterStats
+        {
+            [SerializeField] public int MaxHealth;
+            [SerializeField] public int CurrentHealth;
         }
     }
 }
