@@ -44,13 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b41b67bb31423198e4c639807338dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacterBasicStats:
-    MaxHealth: 0
-    CurrentHealth: 0
-    PlayerMoveSpeed: 0
+  PlayerCharacterBasicStats:
+    MaxHealth: 30
+    CurrentHealth: 30
+    PlayerMoveSpeed: 5
     CanMove: 1
   PlayerCharacterAttackStats:
-    ProjectileSpeed: 0
-    ProjectileDamage: 0
-    ProjectileLifeTime: 0
-    ProjectileSpawnRelatedPosition: {x: 0, y: 0, z: 0}
+    ProjectileSpeed: 10
+    ProjectileDamage: 10
+    ProjectileLifeTime: 10
+    ProjectileSpawnRelatedPosition: {x: 0, y: 0.5, z: 0}
+  PlayerCharacter: {fileID: 0}

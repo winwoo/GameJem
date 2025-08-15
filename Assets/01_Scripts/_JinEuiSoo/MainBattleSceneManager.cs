@@ -11,26 +11,36 @@ namespace MainBattleScene
         
         public PlayerManager PlayerManager;
         public BossManager BossManager;
+
+        [SerializeField] private bool _endBattleTest;
         
         private void Awake()
         {
             if (_instance == null)
             {
                 _instance = this;
-                return;
+
+                goto InitializeSectionStart;
             }
             // else
-            
-            
-            var go = GameObject.Find("MainBattleSceneManager");
 
-            if (go != null)
             {
-                Destroy(go.gameObject);
+                var go = GameObject.Find("MainBattleSceneManager");
+
+                if (go != null)
+                {
+                    Destroy(go.gameObject);
+                }
+                
+                _instance = this;
+
+                goto InitializeSectionStart;
+
             }
             
-            _instance = this;
+            InitializeSectionStart: ;
             
+
         }
 
         void Start()
@@ -41,7 +51,19 @@ namespace MainBattleScene
         void Update()
         {
             UpdateUpdate();
+
+            if (_endBattleTest == true)
+            {
+                ReportEndBattle();
+            }
         }
+
+        // Condition, Boss or Player Health 0
+        public void ReportEndBattle()
+        {
+            
+        }
+        
     }
     
     

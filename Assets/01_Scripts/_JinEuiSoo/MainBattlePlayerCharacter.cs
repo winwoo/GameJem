@@ -15,7 +15,7 @@ namespace MainBattleScene
         [SerializeField] private Vector3 _directionToMouseHit; 
         [SerializeField] Camera _camera;
         
-        PlayerCharacterBasicStats _playerBasicBasicStats => MainBattleSceneManager.Instance.PlayerManager.playerCharacterBasicStats;
+        PlayerCharacterBasicStats _playerBasicBasicStats => MainBattleSceneManager.Instance.PlayerManager.PlayerCharacterBasicStats;
         PlayerCharacterAttackStats _playerAttackStats => MainBattleSceneManager.Instance.PlayerManager.PlayerCharacterAttackStats;
 
         private void Start()
@@ -55,7 +55,7 @@ namespace MainBattleScene
                 inputVetor.x -= 1;
             }
 
-            inputVetor *= MainBattleSceneManager.Instance.PlayerManager.playerCharacterBasicStats.PlayerMoveSpeed;
+            inputVetor *= MainBattleSceneManager.Instance.PlayerManager.PlayerCharacterBasicStats.PlayerMoveSpeed;
             
             _rigidbody.linearVelocity = inputVetor;
             
