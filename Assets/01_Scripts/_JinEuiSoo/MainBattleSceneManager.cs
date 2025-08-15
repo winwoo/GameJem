@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MainBattleScene
 {
@@ -8,11 +9,19 @@ namespace MainBattleScene
         public static MainBattleSceneManager Instance => _instance;
         static MainBattleSceneManager _instance;
 
-        public MainBattlePlayerCharacter.PlayerCharacterStats PlayerCharacterStats;
+        public MainBattlePlayerCharacter.PlayerCharacterBasicStats playerCharacterBasicStats;
+        public MainBattlePlayerCharacter.PlayerCharacterAttackStats PlayerCharacterAttackStats;
         
         private void Awake()
         {
-
+            if (_instance == null)
+            {
+                _instance = this;
+                return;
+            }
+            // else
+            
+            
             var go = GameObject.Find("MainBattleSceneManager");
 
             if (go != null)

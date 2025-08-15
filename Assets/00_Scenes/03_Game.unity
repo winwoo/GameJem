@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 224463174}
   - component: {fileID: 224463173}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Test Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +148,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 30, y: 1, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 525864467}
@@ -252,7 +252,7 @@ Transform:
   m_GameObject: {fileID: 525864466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -317,13 +317,13 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
     m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_NearPlane: 0.1
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -441,8 +441,8 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 1
+  field of view: 17
+  orthographic: 0
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -467,13 +467,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903870753}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: 0.6360782, y: 0, z: 0, w: 0.7716246}
+  m_LocalPosition: {x: 0, y: 87, z: -16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 79, y: 0, z: 0}
 --- !u!114 &903870757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,9 +611,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b47c63e26e51c844a82c07fbb6553e4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerCharacterStats:
-    MaxHealth: 0
-    CurrentHealth: 0
+  playerCharacterBasicStats:
+    MaxHealth: 30
+    CurrentHealth: 30
+    PlayerMoveSpeed: 5
+    CanMove: 1
+  PlayerCharacterAttackStats:
+    ProjectileSpeed: 5
+    ProjectileDamage: 10
+    ProjectileLifeTime: 5
+    ProjectileSpawnRelatedPosition: {x: 0, y: 0, z: 0.5}
 --- !u!1 &2007546688
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,8 +654,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd9a4d4d1fd4008b1adfcbdfda04204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
-  _rigidbody: {fileID: 0}
+  _manager: {fileID: 1841656273}
+  _rigidbody: {fileID: 2007546690}
+  _playerAttackProjectile: {fileID: 6133747833213208001, guid: 99edf2b23e6b0964f82545e3656d2edd, type: 3}
+  _projectileGroup: {fileID: 1841656271}
+  _directionToMouseHit: {x: 0, y: 0, z: 0}
+  _camera: {fileID: 0}
 --- !u!54 &2007546690
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -674,7 +685,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &2007546691
 CapsuleCollider:
@@ -722,7 +733,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76d09905d638ca74b8aee5b0fb4c67c8, type: 2}
+  - {fileID: 2100000, guid: a8d5ccfa5ab3bcd4eb2e472c00ac7a71, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -761,7 +772,7 @@ Transform:
   m_GameObject: {fileID: 2007546688}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4.74996, z: 0}
+  m_LocalPosition: {x: 0, y: 2.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
