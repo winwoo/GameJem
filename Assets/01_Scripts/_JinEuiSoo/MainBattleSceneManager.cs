@@ -8,9 +8,9 @@ namespace MainBattleScene
     {
         public static MainBattleSceneManager Instance => _instance;
         static MainBattleSceneManager _instance;
-
-        public MainBattlePlayerCharacter.PlayerCharacterBasicStats playerCharacterBasicStats;
-        public MainBattlePlayerCharacter.PlayerCharacterAttackStats PlayerCharacterAttackStats;
+        
+        public PlayerManager PlayerManager;
+        public BossManager BossManager;
         
         private void Awake()
         {
