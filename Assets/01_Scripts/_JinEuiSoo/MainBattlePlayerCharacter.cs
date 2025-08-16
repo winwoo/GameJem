@@ -12,6 +12,7 @@ namespace MainBattleScene
         [SerializeField] private Rigidbody _rigidbody; 
         [SerializeField] private GameObject _playerAttackProjectile;
         [SerializeField] private GameObject _projectileGroup;
+        [SerializeField] private Animator _animator;
         
         [Header("Debug")] 
         [SerializeField] private Vector3 _directionToMouseHit; 
@@ -41,14 +42,46 @@ namespace MainBattleScene
         private void Update()
         {
 
-            PlayerMovement();
+            UpdatePlayerMovement();
             SetDirectionToMouseHit();
             ActionPlayerAttack();
 
-
+            SetPlayerRunOrIdleAnimation();
         }
 
-        void PlayerMovement()
+        void SetPlayerRunOrIdleAnimation()
+        {
+            Vector3 playerCurrentVelocity = _rigidbody.linearVelocity;
+            
+            SetPlayerRotation(playerCurrentVelocity);
+            
+            // Set Animations
+            if(playerCurrentVelocity.sqrMagnitude > 0.05f)
+            {
+                _animator.SetBool("RunBool", true);
+            }
+            else
+            {
+                _animator.SetBool("RunBool", false);
+            }
+            
+        }
+
+        void SetPlayerRotation(Vector3 playerCurrentVelocity)
+        {
+            if (playerCurrentVelocity.sqrMagnitude < 0.1f)
+            {
+                return;
+            }
+            
+            Vector3 playerMoveDirection = playerCurrentVelocity;
+            playerMoveDirection.y = 0f;
+            playerMoveDirection = playerMoveDirection.normalized;
+            Quaternion newRotation = Quaternion.LookRotation(playerMoveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 10f);
+        }
+
+        void UpdatePlayerMovement()
         {
             if (PlayerBasicStats.CanMove == false)
             {
@@ -139,6 +172,8 @@ namespace MainBattleScene
             }
             
             _rigidbody.linearVelocity = direction;
+            
+            
             
         }
 
@@ -339,6 +374,16 @@ namespace MainBattleScene
             
         }
 
+        public void SetDodgeAnimation(bool value)
+        {
+            _animator.SetBool("DodgeBool", value);
+
+            if (value == false)
+            {
+                _animator.SetTrigger("DodgeEndTrigger");
+            }
+        }
+        
         public void CallPlayerDeath()
         {
             Debug.Log("Player Death");
