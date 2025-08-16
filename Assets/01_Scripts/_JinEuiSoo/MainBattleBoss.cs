@@ -25,12 +25,27 @@ namespace MainBattleScene
             [SerializeField] public float RetargetTime;
         }
 
-        [System.Serializable]   
+        [System.Serializable]
         public class BossNormalAttackStats
         {
             [SerializeField] public BossProjectile[] BossProjectiles;
             [SerializeField] public float AttackRange;
             [SerializeField] public float AttackCooldown;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth -= damage;
+            if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            Debug.Log($"Boss {this.GetType().Name} has died.");
+            Destroy(gameObject);
         }
     }
 }
