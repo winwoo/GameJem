@@ -55,8 +55,8 @@ MonoBehaviour:
     MoveSpeed: 2
     RotationSpeed: 2
     RetargetTime: 3
-    BugMoveSpeed: 10
-    BugRotationSpeed: 5
+    BugMoveSpeed: 20
+    BugRotationSpeed: 10
     BugRetargetTime: 1
   BossNormalAttackStats:
     BossProjectiles:
@@ -67,7 +67,7 @@ MonoBehaviour:
     ProjectileSpeed: 2
     BugAttackRange: 0
     BugAttackCooldown: 0.1
-    BugProjectileSpeed: 10
+    BugProjectileSpeed: 20
   _currentActiveBossBehaviours: []
 --- !u!1001 &5220636810075425362
 PrefabInstance:
