@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MainBattleScene
 {
@@ -7,21 +9,40 @@ namespace MainBattleScene
     {
         public static MainBattleSceneManager Instance => _instance;
         static MainBattleSceneManager _instance;
+        
+        public PlayerManager PlayerManager;
+        public BossManager BossManager;
 
-        public MainBattlePlayerCharacter.PlayerCharacterStats PlayerCharacterStats;
+        [SerializeField] private bool _endBattleTest;
+        [SerializeField] private bool _isBattleEndCalled = false;
         
         private void Awake()
         {
-
-            var go = GameObject.Find("MainBattleSceneManager");
-
-            if (go != null)
+            if (_instance == null)
             {
-                Destroy(go.gameObject);
+                _instance = this;
+
+                goto InitializeSectionStart;
+            }
+            // else
+
+            {
+                var go = GameObject.Find("MainBattleSceneManager");
+
+                if (go != null)
+                {
+                    Destroy(go.gameObject);
+                }
+                
+                _instance = this;
+
+                goto InitializeSectionStart;
+
             }
             
-            _instance = this;
+            InitializeSectionStart: ;
             
+
         }
 
         void Start()
@@ -32,7 +53,41 @@ namespace MainBattleScene
         void Update()
         {
             UpdateUpdate();
+
+            #region End Battle Condition Check
+
+            if (PlayerManager.PlayerCharacterBasicStats.CurrentHealth <= 0)
+            {
+                _endBattleTest = true;
+            }
+
+            if (BossManager.BossBasicStats.CurrentHealth <= 0)
+            {
+                _endBattleTest = true;
+            }
+
+            if (_endBattleTest == true)
+            {
+                _endBattleTest = false;
+                ReportEndBattle();
+            }
+
+            #endregion
         }
+
+        // Condition, Boss or Player Health 0
+        public async void ReportEndBattle()
+        {
+            if (_isBattleEndCalled == true)
+            {
+                return;
+            }
+
+            _isBattleEndCalled = true;
+            await Managers.UI.Open<UISteam>();
+            await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
+        }
+        
     }
     
     

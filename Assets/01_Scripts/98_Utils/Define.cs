@@ -7,7 +7,6 @@ public static class Define
 {
     public enum Scene
     {
-        Unknown,
         Splash,
         Title,
         Lobby,
