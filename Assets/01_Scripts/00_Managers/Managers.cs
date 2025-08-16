@@ -34,12 +34,6 @@ public class Managers : MonoBehaviour
     private async void Awake()
     {
         await Init();
-        foreach (var bug in _initBugSetting.InitBugData) // 초기 버그 설정
-        {
-            bug.IsBug = true; // 모든 버그를 비활성화
-            _bugDic[bug.Type] = bug;
-        }
-        PlayCount = 0;
     }
 
     private void Start()
@@ -100,6 +94,13 @@ public class Managers : MonoBehaviour
             await s_instance._ui.Init();
             await s_instance._sound.Init();
         }
+
+        foreach (var bug in s_instance._initBugSetting.InitBugData) // 초기 버그 설정
+        {
+            bug.IsBug = true; // 모든 버그를 비활성화
+            s_instance._bugDic[bug.Type] = bug;
+        }
+        s_instance.PlayCount = 0;
     }
 
     public async UniTask Dispose()
