@@ -60,6 +60,9 @@ namespace MainBattleScene
             }
 
             MainBattleSceneManager.Instance.UpdateBossHealthUI();
+            HitText hitText = Instantiate(MainBattleSceneManager.Instance.HitText, MainBattleSceneManager.Instance.BossHitTextSpawnPoint.position, Quaternion.identity);
+            hitText.transform.SetParent(MainBattleSceneManager.Instance.BossHitTextSpawnPoint);
+            hitText.ShowHitText(MainBattleSceneManager.Instance.BossManager.BossBasicStats.IsBugMode);
 
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
             {

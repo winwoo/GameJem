@@ -367,6 +367,9 @@ namespace MainBattleScene
             PlayerBasicStats.CurrentHealth -= damage;
 
             MainBattleSceneManager.Instance.UpdatePlayerHealthUI();
+            HitText hitText = Instantiate(MainBattleSceneManager.Instance.HitText, MainBattleSceneManager.Instance.PlayerHitTextSpawnPoint.position, Quaternion.identity);
+            hitText.transform.SetParent(MainBattleSceneManager.Instance.PlayerHitTextSpawnPoint);
+            hitText.ShowHitText(false);
 
             // Check And Report End Battle
             if (PlayerBasicStats.CurrentHealth <= 0)
