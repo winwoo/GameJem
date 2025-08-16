@@ -2,46 +2,35 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BattlePlayDesginType
+public enum BattleBugType
 {
-    Dash = 0,
-    Special1 = 1,
-    Special2 = 2,
-}
-
-public enum BattleBossDesignType
-{
-    Special1 = 0,
-    Special2 = 1,
-    Special3 = 2,
+    PlayerMove,
+    PlayerAttack,
+    PlayerDash,
+    BossMove,
+    BossAttack,
+    BossHp
 }
 
 public class BattleDesignManager : BaseManager
 {
-    public readonly HashSet<BattlePlayDesginType> PlayerDesignForlder = new HashSet<BattlePlayDesginType>
-    {
-        BattlePlayDesginType.Dash,
-        BattlePlayDesginType.Special1,
-        BattlePlayDesginType.Special2,
-    };
-
-    public readonly HashSet<BattleBossDesignType> BossDesignForlder = new HashSet<BattleBossDesignType>
-    {
-        BattleBossDesignType.Special1,
-        BattleBossDesignType.Special2,
-        BattleBossDesignType.Special3,
-    };
-
-    public readonly HashSet<BattlePlayDesginType> PlayerDesignApplied = new();
-    public readonly HashSet<BattleBossDesignType> BossDesignApplied = new();
+    private readonly Dictionary<BattleBugType, bool> _battleBugDic = new Dictionary<BattleBugType, bool>();
     public override async UniTask Init()
     {
-
+        foreach(InitBugTypeData data in Managers.Instance.InitBugSetting.InitBugData)
+        {
+            _battleBugDic[data.Type] = data.IsBug;
+        }
         await UniTask.CompletedTask;
     }
 
     public override async UniTask Dispose()
     {
         await UniTask.CompletedTask;
+    }
+
+    public void SetBattleBug(BattleBugType bugType, bool isOn)
+    {
+        _battleBugDic[bugType] = isOn;
     }
 }

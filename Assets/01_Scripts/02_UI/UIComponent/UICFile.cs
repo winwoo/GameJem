@@ -7,28 +7,28 @@ public class UICFile : MonoBehaviour
 {
     [SerializeField]
     [Link]
-    private Image _imgSelect;
+    protected Image _imgSelect;
     [SerializeField]
     [Link]
-    private TextMeshProUGUI _textName;
+    protected TextMeshProUGUI _textName;
     [SerializeField]
     [Link]
-    private Button _btnIcon;
+    protected Button _btnIcon;
 
-    public bool IsSelected => _imgSelect.gameObject.activeSelf;
-    public int Index { get; private set; } = -1;
-    private Action<UICFile> _onClickIcon;
+    private Sprite _codeImg;
+
+    private DateTime _selectTime;
     private void Awake()
     {
         _textName.text = string.Empty;
     }
 
-    public void AddEvent(Action<UICFile> onClickIcon, int index)
+    public void InitFile(Sprite codeImg, string name)
     {
-        _onClickIcon = onClickIcon;
-        Index = index;
-        _btnIcon.onClick.AddListener(OnClickIcon);
-        SetSelct(false);
+        _codeImg = codeImg;
+        _textName.text = $"{name}.txt";
+        _btnIcon.onClick.AddListener(OnClickFile);
+        _imgSelect.gameObject.SetActive(false); // 선택 이미지 비활성화
     }
 
     public void SetSelct(bool active)
@@ -36,13 +36,16 @@ public class UICFile : MonoBehaviour
         _imgSelect.gameObject.SetActive(active);
     }
 
-    public void SetText(string text)
+    private void OnClickFile()
     {
-        _textName.text = $"{text}.txt";
-    }
-
-    private void OnClickIcon()
-    {
-        _onClickIcon?.Invoke(this);
+        if (_selectTime != default && (DateTime.Now - _selectTime).TotalSeconds < 0.5f)
+        {
+            // 더블 클릭 처리
+            Debug.Log("img open");
+            SetSelct(false);
+            return;
+        }
+        _selectTime = DateTime.Now;
+        SetSelct(true);
     }
 }
