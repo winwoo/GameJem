@@ -57,6 +57,11 @@ MonoBehaviour:
   _sortingOffset: 0
   _selfCanvas: {fileID: 0}
   _btnClose: {fileID: 20159175167095141}
+  _textBefore: {fileID: 1404898271378407357}
+  _textAfter: {fileID: 4793984675541291041}
+  _goodColor: {r: 1, g: 0, b: 0, a: 1}
+  _neutralColor: {r: 1, g: 0.53296894, b: 0, a: 1}
+  _badColor: {r: 0, g: 0.03245783, b: 1, a: 0}
 --- !u!1 &3434394283661892517
 GameObject:
   m_ObjectHideFlags: 0

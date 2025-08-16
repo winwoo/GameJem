@@ -27,7 +27,10 @@ public class Managers : MonoBehaviour
     private InitBugType _initBugSetting;
     private Dictionary<BattleBugType, InitBugTypeData> _bugDic = new();
     public InitBugTypeData[] InitBugSetting => _bugDic.Values.ToArray();
+    private Dictionary<BattleBugType, bool> _originBugs = new Dictionary<BattleBugType, bool>();
+    public Dictionary<BattleBugType, bool> OriginBugs { get; set; }
     public bool IsIntro { get; set; } = false; // 인트로 여부
+
 
     public int PlayCount { get; set; } = 0; // 플레이 횟수
 
