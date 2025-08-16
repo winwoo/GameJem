@@ -98,16 +98,16 @@ namespace Client
         }
 
         /// <summary>
-        /// ´ë¼Ò¹®ÀÚ ±¸ºĞ ÇÏÁö¾Ê´Â ¿É¼Ç ³ÖÀ»¼öÀÖ´Â stringºñ±³ ÇÔ¼ö
+        /// ëŒ€ì†Œë¬¸ì êµ¬ë¶„ í•˜ì§€ì•ŠëŠ” ì˜µì…˜ ë„£ì„ìˆ˜ìˆëŠ” stringë¹„êµ í•¨ìˆ˜
         /// </summary>
-        /// <param name="isIgnoreCase">true·Î ÇÒ°æ¿ì ´ë¼Ò¹®ÀÚ ¹«½Ã</param>
+        /// <param name="isIgnoreCase">trueë¡œ í• ê²½ìš° ëŒ€ì†Œë¬¸ì ë¬´ì‹œ</param>
         /// <returns></returns>
         public static bool Contains(this string source, string toCheck, bool isIgnoreCase)
         {
             return source.Contains(toCheck, isIgnoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.CurrentCulture);
         }
 
-        //¸®½ºÆ® ¼¯±â
+        //ë¦¬ìŠ¤íŠ¸ ì„ê¸°
         public static void Shuffle<T>(this IList<T> list)
         {
             System.Random rng = new System.Random();
@@ -228,6 +228,11 @@ namespace Client
             {
                 SetLayer(kChild.GetChild(i), iLayer);
             }
+        }
+
+        public static string SymbolColor(this string text, string start, string end, string code)
+        {
+            return text.Replace(start, $"<color=#{code}>").Replace(end, "</color>");
         }
     }
 }

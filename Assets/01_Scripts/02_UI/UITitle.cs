@@ -6,6 +6,8 @@ public class UITitle : UIBase
     [SerializeField]
     [Link]
     private Button _btnUpdate;
+    [SerializeField]
+    private DialogData _dialog;
 
     public override void OnCreate(object ctx)
     {
