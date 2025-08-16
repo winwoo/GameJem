@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _category: 2
-  _isModal: 1
+  _isModal: 0
   _singleton: 1
   _sortingOffset: 0
   _selfCanvas: {fileID: 0}

@@ -43,7 +43,8 @@ public class UIEnding : UIBase
         }
         if (_isBad)
         {
-            Managers.Instance.IsIntro = false;
+            Managers.Instance.ResetManager();
+
             await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
             await CloseUI();
         }

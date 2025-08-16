@@ -97,14 +97,20 @@ public class Managers : MonoBehaviour
             await s_instance._sound.Init();
         }
 
-        s_instance.OriginBugs = new Dictionary<BattleBugType, bool>();
-        foreach (var bug in s_instance._initBugSetting.InitBugData) // 초기 버그 설정
+        s_instance.ResetManager();
+    }
+
+    public void ResetManager()
+    {
+        IsIntro = false;
+        OriginBugs = new Dictionary<BattleBugType, bool>();
+        foreach (var bug in _initBugSetting.InitBugData) // 초기 버그 설정
         {
             bug.IsBug = true; // 모든 버그를 비활성화
-            s_instance._bugDic[bug.Type] = bug;
-            s_instance.OriginBugs[bug.Type] = bug.IsBug; // 초기 버그 상태를 저장
+            _bugDic[bug.Type] = bug;
+            OriginBugs[bug.Type] = bug.IsBug; // 초기 버그 상태를 저장
         }
-        s_instance.PlayCount = 0;
+        PlayCount = 0;
     }
 
     public async UniTask Dispose()
