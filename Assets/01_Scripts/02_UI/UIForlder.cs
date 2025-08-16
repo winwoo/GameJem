@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,20 +31,21 @@ public class UIForlder : UIBase
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
     private DateTime _selectTime;
-    private List<InitBugTypeData> _originBugs;
+    private Dictionary<BattleBugType, bool> _originBugs = new Dictionary<BattleBugType, bool>();
     public override void OnCreate(object ctx)
     {
         base.OnCreate(ctx);
         _btnBack1.onClick.AddListener(OnBack);
         _btnBack2.onClick.AddListener(OnBack);
         _btnUpdate.onClick.AddListener(OnUpdate);
-        _originBugs = Managers.Instance.InitBugSetting.InitBugData.ToList();
+        _originBugs = Managers.Instance.InitBugSetting
+            .ToDictionary(data => data.Type, data => data.IsBug);
         CreateFolder(_folder, _content.transform);
     }
 
     private void CreateFolder(UICFolder origin, Transform parent)
     {
-        var settings = Managers.Instance.InitBugSetting.InitBugData;
+        var settings = Managers.Instance.InitBugSetting;
 
         for(int i = 0; i < settings.Length; i++)
         {
@@ -107,6 +109,7 @@ public class UIForlder : UIBase
             folder.gameObject.SetActive(false);
         }
         _selectFolder.EnterFolder(OnExitFolder);
+        _btnUpdate.gameObject.SetActive(false); // 업데이트 버튼 비활성화
     }
 
     private void OnExitFolder(UICFolder exitFolder)
@@ -118,6 +121,8 @@ public class UIForlder : UIBase
 
             folder.gameObject.SetActive(true);
         }
+        _btnUpdate.gameObject.SetActive(true); // 업데이트 버튼 활성화
+        DebugPrint();
     }
 
     private void OnBack()
@@ -130,22 +135,49 @@ public class UIForlder : UIBase
         _selectFolder.ExitFolder();
     }
 
-    private void OnUpdate()
+    private async void OnUpdate()
     {
-        var datas = Managers.Instance.InitBugSetting.InitBugData;
+        var datas = Managers.Instance.InitBugSetting;
         bool noModified = true;
         foreach (var data in datas)
         {
-            if (data.IsBug != _originBugs.Find(x => x.Type == data.Type).IsBug)
-            {
-                noModified = false;
-                break;
-            }
+            if(_originBugs[data.Type] == data.IsBug)
+                continue;
+
+            noModified = false;
+            break;
         }
 
         if (noModified)
         {
+            Action<bool> action = async (isOk) =>
+            {
+                if(!isOk)
+                    return;
+
+                await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+                await CloseUI();
+            };
+            await Managers.UI.Open<UISystem>(action);
             return;
         }
+
+        await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+        await CloseUI();
+    }
+
+    private void DebugPrint()
+    {
+        string origin = "";
+        foreach (var data in _originBugs)
+        {
+            origin += $"{data.Key}: {data.Value}\n";
+        }
+        string current = "";
+        foreach (var data in Managers.Instance.InitBugSetting)
+        {
+            current += $"{data.Type}: {data.IsBug}\n";
+        }
+        Debug.Log($"Origin Bugs:\n{origin}\nCurrent Bugs:\n{current}");
     }
 }
