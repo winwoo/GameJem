@@ -1,3 +1,4 @@
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using MainBattleScene;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class BossNormalAttackBehaviour : BossBehaviour
     BossProjectile[] _bossProjectiles;
     private float _attackCooldown;
     private float _projectileSpeed;
+    private CancellationTokenSource _cancellationTokenSource;
 
     public override void Awake()
     {
@@ -29,7 +31,8 @@ public class BossNormalAttackBehaviour : BossBehaviour
             _bossProjectiles = MainBattleSceneManager.Instance.BossManager.BossNormalAttackStats.BossProjectiles;
         }
 
-        FireProjectile().Forget();
+        _cancellationTokenSource = new CancellationTokenSource();
+        FireProjectile(_cancellationTokenSource.Token).Forget();
     }
 
     public override void UpdateBehaviour()
@@ -51,19 +54,26 @@ public class BossNormalAttackBehaviour : BossBehaviour
     public override void StopBehaviour()
     {
         base.StopBehaviour();
+        _cancellationTokenSource?.Cancel();
     }
 
-    private async UniTask FireProjectile()
+    private async UniTask FireProjectile(CancellationToken cancellationToken)
     {
         while (true)
         {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                Debug.LogWarning("FireProjectile cancelled.");
+                return;
+            }
+
             if (_bossProjectiles == null || _bossProjectiles.Length == 0 || _attackPoints == null || _attackPoints.Length == 0)
             {
                 Debug.LogWarning("No projectiles or attack points available for Boss Normal Attack Behaviour.");
                 return;
             }
 
-            await UniTask.Delay((int)(_attackCooldown * 1000));
+            await UniTask.Delay((int)(_attackCooldown * 1000), cancellationToken: cancellationToken);
             SpawnProjectile();
         }
     }
@@ -79,6 +89,7 @@ public class BossNormalAttackBehaviour : BossBehaviour
             foreach (var attackPoint in _attackPoints)
             {
                 var spawnedProjectile = Instantiate(randomProjectile, attackPoint.position, attackPoint.rotation).GetComponent<BossProjectile>();
+                MainBattleSceneManager.Instance.BossManager.Boss.BossDieAction += () => { if (spawnedProjectile != null) Destroy(spawnedProjectile.gameObject); };
                 spawnedProjectile.Speed = _projectileSpeed;
                 Vector3 direction = attackPoint.position - transform.position;
                 direction.y = transform.position.y;
@@ -92,6 +103,7 @@ public class BossNormalAttackBehaviour : BossBehaviour
             foreach (var attackPoint in _attackPoints)
             {
                 var spawnedProjectile = Instantiate(randomProjectile, attackPoint.position, attackPoint.rotation).GetComponent<BossProjectile>();
+                MainBattleSceneManager.Instance.BossManager.Boss.BossDieAction += () => { if (spawnedProjectile != null) Destroy(spawnedProjectile.gameObject); };
                 spawnedProjectile.Speed = _projectileSpeed;
                 Vector3 direction = attackPoint.position - transform.position;
                 direction.y = transform.position.y;
@@ -107,6 +119,12 @@ public class BossNormalAttackBehaviour : BossBehaviour
     {
         while (true)
         {
+            if (_cancellationTokenSource.Token.IsCancellationRequested)
+            {
+                Debug.LogWarning("FireProjectile cancelled.");
+                return;
+            }
+
             if (_bossProjectiles == null || _bossProjectiles.Length == 0 || _attackPoints == null || _attackPoints.Length == 0)
             {
                 Debug.LogWarning("No projectiles or attack points available for Boss Normal Attack Behaviour.");

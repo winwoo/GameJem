@@ -9,7 +9,7 @@ namespace MainBattleScene
     {
         public static MainBattleSceneManager Instance => _instance;
         static MainBattleSceneManager _instance;
-        
+
         public PlayerManager PlayerManager;
         public BossManager BossManager;
 
@@ -20,7 +20,13 @@ namespace MainBattleScene
         public bool[] PlayerFeatureConditions => playerFeatureConditions;
         [SerializeField] private bool[] _bossFeatureConditions;
         public bool[] BossFeatureConditions => _bossFeatureConditions;
-        
+
+        [Header("Hp UI")]
+        public RectTransform PlayerHpBar;
+        public UnityEngine.UI.Image PlayerHpBarImage;
+        public RectTransform BossHpBar;
+        public UnityEngine.UI.Image BossHpBarImage;
+
         private void Awake()
         {
             if (_instance == null)
@@ -38,19 +44,19 @@ namespace MainBattleScene
                 {
                     Destroy(go.gameObject);
                 }
-                
+
                 _instance = this;
 
                 goto InitializeSectionStart;
 
             }
-            
-            InitializeSectionStart: ;
+
+        InitializeSectionStart:;
 
             AwakeUpdate();
-            
-            
-            
+
+
+
 
         }
 
@@ -82,6 +88,27 @@ namespace MainBattleScene
             }
 
             #endregion
+            if (PlayerManager.PlayerCharacterBasicStats.CurrentHealth > 0)
+            {
+                Vector3 playerScreenPoint = Camera.main.WorldToScreenPoint(PlayerManager.PlayerCharacter.transform.position);
+                PlayerHpBar.anchoredPosition = playerScreenPoint += new Vector3(0, 50, 0);
+            }
+
+            if (BossManager.BossBasicStats.CurrentHealth > 0)
+            {
+                Vector3 bossScreenPoint = Camera.main.WorldToScreenPoint(BossManager.Boss.transform.position);
+                BossHpBar.anchoredPosition = bossScreenPoint += new Vector3(0, 150, 0);
+            }
+        }
+
+        public void UpdatePlayerHealthUI()
+        {
+            PlayerHpBarImage.fillAmount = (float)PlayerManager.PlayerCharacterBasicStats.CurrentHealth / PlayerManager.PlayerCharacterBasicStats.MaxHealth;
+        }
+
+        public void UpdateBossHealthUI()
+        {
+            BossHpBarImage.fillAmount = (float)BossManager.BossBasicStats.CurrentHealth / BossManager.BossBasicStats.MaxHealth;
         }
 
         // Condition, Boss or Player Health 0
@@ -96,10 +123,6 @@ namespace MainBattleScene
             await Managers.UI.Open<UISteam>();
             await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
         }
-        
+
     }
-    
-    
-
-
 }

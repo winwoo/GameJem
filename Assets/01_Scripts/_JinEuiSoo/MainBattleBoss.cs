@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace MainBattleScene
@@ -5,6 +6,7 @@ namespace MainBattleScene
 
     public class MainBattleBoss : MonoBehaviour
     {
+        public Action BossDieAction;
         [SerializeField] public Transform[] AttackPoints;
 
         [System.Serializable]
@@ -56,8 +58,12 @@ namespace MainBattleScene
                 MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth -= damage;
             }
 
+            MainBattleSceneManager.Instance.UpdateBossHealthUI();
+
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
             {
+                MainBattleSceneManager.Instance.BossHpBar.gameObject.SetActive(false);
+
                 Die();
             }
         }
@@ -65,6 +71,7 @@ namespace MainBattleScene
         private void Die()
         {
             Debug.Log($"Boss {this.GetType().Name} has died.");
+            BossDieAction?.Invoke();
             MainBattleSceneManager.Instance.BossManager.RemoveAllBossBehaviours();
             Destroy(gameObject);
         }
