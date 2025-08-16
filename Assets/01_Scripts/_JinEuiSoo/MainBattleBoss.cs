@@ -45,6 +45,7 @@ namespace MainBattleScene
         private void Die()
         {
             Debug.Log($"Boss {this.GetType().Name} has died.");
+            MainBattleSceneManager.Instance.BossManager.RemoveAllBossBehaviours();
             Destroy(gameObject);
         }
     }
