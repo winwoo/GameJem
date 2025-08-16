@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
+    public bool IsBugMode = false;
+
     public virtual void Awake()
     {
         // Initialize the boss
@@ -11,12 +13,12 @@ public class BossBehaviour : MonoBehaviour
 
     private void InternalInitialize()
     {
-        Debug.Log($"Boss {this.GetType().Name} has initialized.");
+        //Debug.Log($"Boss {this.GetType().Name} has initialized.");
     }
 
     public virtual void PlayBehaviour()
     {
-        Debug.Log($"Boss {this.GetType().Name} is playing its behaviour.");
+        //Debug.Log($"Boss {this.GetType().Name} is playing its behaviour.");
     }
 
     public virtual void UpdateBehaviour()
@@ -26,6 +28,6 @@ public class BossBehaviour : MonoBehaviour
 
     public virtual void StopBehaviour()
     {
-        Debug.Log($"Boss {this.GetType().Name} has stopped its behaviour.");
+        //Debug.Log($"Boss {this.GetType().Name} has stopped its behaviour.");
     }
 }

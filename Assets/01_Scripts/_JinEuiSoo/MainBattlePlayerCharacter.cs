@@ -26,6 +26,9 @@ namespace MainBattleScene
         public PlayerCharacterAbilitySpecialBStats PlayerAbilitySpecialBStats => MainBattleSceneManager.Instance.PlayerManager.PlayerCharacterAbilitySpecialBStats;
         
         CancellationTokenSource _playerKnockBackCancellationTokenSource;
+        
+        
+        
 
         private void Start()
         {
@@ -38,11 +41,18 @@ namespace MainBattleScene
         private void Update()
         {
 
-            #region PlayerMovement
+            PlayerMovement();
+            SetDirectionToMouseHit();
+            ActionPlayerAttack();
 
+
+        }
+
+        void PlayerMovement()
+        {
             if (PlayerBasicStats.CanMove == false)
             {
-                goto LastOfPlayerMovement;
+                return;
             }
             
             Vector3 inputVector = new Vector3();
@@ -70,20 +80,15 @@ namespace MainBattleScene
             inputVector *= MainBattleSceneManager.Instance.PlayerManager.PlayerCharacterBasicStats.PlayerMoveSpeed;
                 
             MovePlayerCharacter(inputVector);;
-            
-            
-            
-            LastOfPlayerMovement: ;
+        }
 
-            #endregion
-            
-            #region Set Direction to mouse hit
-
+        void SetDirectionToMouseHit()
+        {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, 300f) == false)
             {
-                goto OutOfFindGround;
+                return;
             }
             
             // // Set Direction to Mouse hit
@@ -92,44 +97,184 @@ namespace MainBattleScene
             
             _directionToMouseHit = mouseWorldPoint - transform.position;
             _directionToMouseHit = Vector3.Normalize(_directionToMouseHit);
-            
-            OutOfFindGround: ;
-            
-            #endregion
+        }
 
-            #region Player Attacking
-
+        // Debug Case 1 -> Player will attack to the wrong position 
+        void ActionPlayerAttack()
+        {
             if (Input.GetMouseButtonDown(0) == false)
             {
-                goto OutOfPlayerAttacking;
+                return;
             }
             
             GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
             projectileGameObject.transform.position =
                 transform.position + PlayerAttackStats.ProjectileSpawnRelatedPosition;
-            projectileGameObject.GetComponent<PlayerAttackProjectile>().Initialize(_directionToMouseHit, 
+            
+            Vector3 projectilesDirection = _directionToMouseHit;
+            
+            if (MainBattleSceneManager.Instance.PlayerFeatureConditions[1] == false)
+            {
+                projectilesDirection = _camera.transform.position;
+            }
+            
+            projectileGameObject.GetComponent<PlayerAttackProjectile>().Initialize(projectilesDirection, 
                 PlayerAttackStats.ProjectileSpeed, PlayerAttackStats.ProjectileDamage, PlayerAttackStats.ProjectileLifeTime);
-            
-            
-            
-            OutOfPlayerAttacking: ;
-            
-            #endregion
-
-
         }
-
+        
+        // Player Feature move Normal <-> Player Feature move Bug
+        // Both controlled in this method
         /// <summary>
         /// 
         /// </summary>
         /// <param name="direction">Without Multiply deltaTime. Expect Programmer Apply it</param>
-        public void MovePlayerCharacter(Vector3 direction)
+        public void MovePlayerCharacter(Vector3 direction)   
         {
             direction.y = _rigidbody.linearVelocity.y;;
+            
+            // Bug Feature. When 0 is false, Bug Feature will happen
+            if (MainBattleSceneManager.Instance.PlayerFeatureConditions[0] == false)
+            {
+                direction *= -1f;
+            }
             
             _rigidbody.linearVelocity = direction;
             
         }
+
+#if false // Move Right
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        public void MovePlayerCharacter(Vector3 direction)   
+        {
+            // 플레이어 캐릭터의 속도 조절!
+            direction.y = _rigidbody.linearVelocity.y;;
+            
+            // 키보드 화살표 방향으로 이동 시키기!
+            _rigidbody.linearVelocity = direction;
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#endif
+
+#if false // Move - Bug
+
+
+
+
+
+
+
+
+
+
+        public void MovePlayerCharacter(Vector3 direction)   
+        {
+            // 플레이어 캐릭터의 속도 조절!
+            direction.y = _rigidbody.linearVelocity.y;;
+            
+            // 키보드와 반대 방향으로 이동 시키기!
+            _rigidbody.linearVelocity = direction * -1f;
+            
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#endif
+
+#if false
+
+
+        private Vector3 _directionToMousePosition;
+
+
+
+        void ActionPlayerAttack()
+        {
+            if (Input.GetMouseButtonDown(0) == false)
+            {
+                return;
+            }
+            // 플레이어 캐릭터의 공격을 시작하기!!
+            GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
+            projectileGameObject.transform.position =
+                transform.position + PlayerAttackStats.ProjectileSpawnRelatedPosition;
+            // 플레이어 캐릭터의 공격 방향을 마우스 위치로 설정하기!!
+            Vector3 projectilesDirection = _directionToMousePosition;
+            
+            projectileGameObject.GetComponent<PlayerAttackProjectile>().
+                Initialize(projectilesDirection, 
+                PlayerAttackStats.ProjectileSpeed, 
+                PlayerAttackStats.ProjectileDamage, 
+                PlayerAttackStats.ProjectileLifeTime);
+        }
+
+        
+        
+        
+        
+        
+#endif
+        
+#if false
+        
+
+
+
+
+
+        private Vector3 _directionToMousePosition;
+
+
+
+        void ActionPlayerAttack()
+        {
+            if (Input.GetMouseButtonDown(0) == false)
+            {
+                return;
+            }
+            // 플레이어 캐릭터의 공격을 시작하기!!
+            GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
+            projectileGameObject.transform.position =
+                transform.position + PlayerAttackStats.ProjectileSpawnRelatedPosition;
+            // 플레이어 캐릭터의 공격 방향을 카메라 위치로 설정하기!!
+            Vector3 projectilesDirection = _directionToMousePosition;
+            
+            projectileGameObject.GetComponent<PlayerAttackProjectile>().
+                Initialize(projectilesDirection, 
+                PlayerAttackStats.ProjectileSpeed, 
+                PlayerAttackStats.ProjectileDamage, 
+                PlayerAttackStats.ProjectileLifeTime);
+        }
+
+        
+        
+        
+        
+        
+#endif
 
         public async UniTask KnockBackPlayerCharacter(Vector3 totalRelatedAmountMovePosition, float time)
         {
@@ -183,9 +328,12 @@ namespace MainBattleScene
         {
             PlayerBasicStats.CurrentHealth -= damage;
 
+            MainBattleSceneManager.Instance.UpdatePlayerHealthUI();
+
             // Check And Report End Battle
             if (PlayerBasicStats.CurrentHealth <= 0)
             {
+                MainBattleSceneManager.Instance.PlayerHpBar.gameObject.SetActive(false);
                 CallPlayerDeath();
             }
             
@@ -233,6 +381,10 @@ namespace MainBattleScene
             [SerializeField] public float DashPower;
             [SerializeField] public float DashDuration;
             [SerializeField] public float DashCooldown;
+
+            [SerializeField] public float DashBugPower;
+            [SerializeField] public float DashBugDuration;
+            [SerializeField] public float DashBugCooldown;
         }
         
         [System.Serializable]

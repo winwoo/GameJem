@@ -24,6 +24,8 @@ public class BossManager : MonoBehaviour
 
     private void Start()
     {
+        
+
         //Test
         for (int i = 0; i < 2; i++)
         {
