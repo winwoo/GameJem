@@ -49,8 +49,11 @@ public class BossDefaultMoveBehaviour : BossBehaviour
 
     Vector3 GetRandomPosition()
     {
-        float x = Random.Range(-15f, 15f);
-        float z = Random.Range(-15f, 15f);
+        float radius = 15f;
+        float angle = Random.Range(0f, Mathf.PI * 2f);
+        float r = Mathf.Sqrt(Random.Range(0f, 1f)) * radius;
+        float x = Mathf.Cos(angle) * r;
+        float z = Mathf.Sin(angle) * r;
         return new Vector3(x, transform.position.y, z);
     }
 
