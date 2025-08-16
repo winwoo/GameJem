@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1f09eabdbddf8ef43972342823fa1c22
+guid: e5799a6683b30334cbec57a700bb4de5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -395653161221097194
-    second: page_gmail_0
+      213: 7555627057548676326
+    second: "\uBCF4\uC2A4 \uC774\uB3D9\uC18D\uB3C4 - \uBC84\uADF8_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: page_gmail_0
+      name: "\uBCF4\uC2A4 \uC774\uB3D9\uC18D\uB3C4 - \uBC84\uADF8_0"
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2560
-        height: 1456
+        width: 2349
+        height: 1494
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 619f72fcb8b528af0800000000000000
-      internalID: -395653161221097194
+      spriteID: 6ecc48407cafad860800000000000000
+      internalID: 7555627057548676326
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      page_gmail_0: -395653161221097194
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
