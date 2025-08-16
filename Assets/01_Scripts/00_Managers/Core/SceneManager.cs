@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 public class SceneManager : BaseManager
@@ -19,7 +20,7 @@ public class SceneManager : BaseManager
         await UniTask.CompletedTask;
     }
 
-    public void LoadScene(Define.Scene type)
+    public void LoadScene(Define.Scene type, Action onLoaded)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(GetSceneName(type));
     }

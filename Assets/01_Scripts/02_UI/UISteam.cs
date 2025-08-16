@@ -15,7 +15,14 @@ public class UISteam : UIBase
 
     private async void OnClickClose()
     {
-        await Managers.UI.Open<UIForlder>();
+        if (Managers.BattleDesign.PlayerDesignForlder.Count == 0 && Managers.BattleDesign.BossDesignForlder.Count == 0)
+        {
+            await Managers.UI.Open<UIEnding>();
+        }
+        else
+        {
+            await Managers.UI.Open<UIForlder>();
+        }
         await CloseUI();
     }
 }

@@ -60,9 +60,10 @@ namespace MainBattleScene
         }
 
         // Condition, Boss or Player Health 0
-        public void ReportEndBattle()
+        public async void ReportEndBattle()
         {
-            Managers.Scene.LoadSceneAsync(Define.Scene.Lobby).Forget();
+            await Managers.UI.Open<UISteam>();
+            await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
         }
         
     }

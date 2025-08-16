@@ -142,7 +142,7 @@ public class UIForlder : UIBase
         _selectedBossFile.SetSelct(true);
     }
 
-    private void OnClickApply()
+    private async void OnClickApply()
     {
         if (_playerFileParent.gameObject.activeSelf && _selectedPlayerFile != null)
         {
@@ -160,9 +160,8 @@ public class UIForlder : UIBase
             _bossDesignTypes.Remove(bossType); // 보스 타입을 플레이어 디자인 타입에서 제거
             _bossDesignTypesApplied.Add(bossType);
             _bossFileParent.gameObject.SetActive(false);
-            Managers.Scene.LoadSceneAsync(Define.Scene.Game).Forget(); // 게임 씬으로 전환
+            await CloseUI();
         }
-        DebugDesignData();
     }
 
     private void DebugDesignData()

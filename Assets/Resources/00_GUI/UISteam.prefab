@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dac55d9367f9954f895bd4503d35bb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _category: 1
+  _category: 2
   _isModal: 0
   _singleton: 1
   _sortingOffset: 0
