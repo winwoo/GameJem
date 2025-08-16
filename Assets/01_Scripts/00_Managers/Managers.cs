@@ -27,6 +27,10 @@ public class Managers : MonoBehaviour
     public static BattleDesignManager BattleDesign => Instance._battleDesign;
     #endregion
 
+    [SerializeField]
+    private InitBugType _initBugSetting;
+    public InitBugType InitBugSetting => _initBugSetting;
+
     private async void Awake()
     {
         await Init();
