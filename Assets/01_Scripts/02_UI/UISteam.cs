@@ -1,4 +1,5 @@
 using Client;
+using Cysharp.Threading.Tasks;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class UISteam : UIBase
     private TextMeshProUGUI _textAfter;
     [SerializeField]
     [Link]
-    private Transform _texts;
+    private RectTransform _texts;
 
     [SerializeField]
     private Color _goodColor;
@@ -46,6 +47,17 @@ public class UISteam : UIBase
 
         SetScoreText(beforeCount, _textBefore);
         SetScoreText(afterCount, _textAfter);
+    }
+
+    public override async UniTask ShowAsync(object args = null)
+    {
+        await base.ShowAsync(args);
+        while(_texts.localPosition.y < 50)
+        {
+            await UniTask.Yield();
+            _texts.localPosition += new Vector3(0, 10 * Time.deltaTime, 0);
+
+        }
     }
 
     private void SetScoreText(int count, TextMeshProUGUI label)
