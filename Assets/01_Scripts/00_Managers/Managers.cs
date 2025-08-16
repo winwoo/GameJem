@@ -20,20 +20,20 @@ public class Managers : MonoBehaviour
     public static UIManager UI => Instance._ui;
     public static SoundManager Sound => Instance._sound;
     #endregion
-
-    #region Contents
-    private readonly BattleDesignManager _battleDesign = new BattleDesignManager();
-
-    public static BattleDesignManager BattleDesign => Instance._battleDesign;
-    #endregion
-
     [SerializeField]
     private InitBugType _initBugSetting;
     public InitBugType InitBugSetting => _initBugSetting;
 
+    public int PlayCount { get; set; } = 0; // 플레이 횟수
+
     private async void Awake()
     {
         await Init();
+        foreach(var bug in _initBugSetting.InitBugData) // 초기 버그 설정
+        {
+            bug.IsBug = true; // 모든 버그를 비활성화
+        }
+        PlayCount = 0;
     }
 
     private void Start()
@@ -93,7 +93,6 @@ public class Managers : MonoBehaviour
             await s_instance._scene.Init();
             await s_instance._ui.Init();
             await s_instance._sound.Init();
-            await s_instance._battleDesign.Init();
         }
     }
 
@@ -105,7 +104,6 @@ public class Managers : MonoBehaviour
         await s_instance._data.Dispose();
         await s_instance._resource.Dispose();
         await s_instance._sound.Dispose();
-        await s_instance._battleDesign.Dispose();
         s_instance = null;
     }
     #endregion
