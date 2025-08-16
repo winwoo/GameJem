@@ -7,6 +7,8 @@ public class BossNormalAttackBehaviour : BossBehaviour
 {
     Transform[] _attackPoints;
     BossProjectile[] _bossProjectiles;
+    private float _attackCooldown;
+    private float _projectileSpeed;
 
     public override void Awake()
     {
@@ -33,6 +35,17 @@ public class BossNormalAttackBehaviour : BossBehaviour
     public override void UpdateBehaviour()
     {
         base.UpdateBehaviour();
+
+        if (IsBugMode)
+        {
+            _attackCooldown = MainBattleSceneManager.Instance.BossManager.BossNormalAttackStats.BugAttackCooldown;
+            _projectileSpeed = MainBattleSceneManager.Instance.BossManager.BossNormalAttackStats.BugProjectileSpeed;
+        }
+        else
+        {
+            _attackCooldown = MainBattleSceneManager.Instance.BossManager.BossNormalAttackStats.AttackCooldown;
+            _projectileSpeed = MainBattleSceneManager.Instance.BossManager.BossNormalAttackStats.ProjectileSpeed;
+        }
     }
 
     public override void StopBehaviour()
@@ -50,7 +63,7 @@ public class BossNormalAttackBehaviour : BossBehaviour
                 return;
             }
 
-            await UniTask.Delay((int)(MainBattleSceneManager.Instance.BossManager.BossNormalAttackStats.AttackCooldown * 1000));
+            await UniTask.Delay((int)(_attackCooldown * 1000));
             SpawnProjectile();
         }
     }
@@ -63,16 +76,28 @@ public class BossNormalAttackBehaviour : BossBehaviour
 
         if (randomProjectile.IsFixedPosition)
         {
-            var spawnedProjectile = Instantiate(randomProjectile, randomAttackPoint.transform.position, randomAttackPoint.transform.rotation).GetComponent<BossProjectile>();
+            foreach (var attackPoint in _attackPoints)
+            {
+                var spawnedProjectile = Instantiate(randomProjectile, attackPoint.position, attackPoint.rotation).GetComponent<BossProjectile>();
+                spawnedProjectile.Speed = _projectileSpeed;
+                Vector3 direction = attackPoint.position - transform.position;
+                direction.y = transform.position.y;
+                direction.Normalize();
+                spawnedProjectile.SetDirection(direction);
+            }
+            //var spawnedProjectile = Instantiate(randomProjectile, randomAttackPoint.transform.position, randomAttackPoint.transform.rotation).GetComponent<BossProjectile>();
         }
         else
         {
-            var spawnedProjectile = Instantiate(randomProjectile, randomAttackPoint.transform.position, randomAttackPoint.transform.rotation).GetComponent<BossProjectile>();
-
-            Vector3 direction = randomAttackPoint.position - transform.position;
-            direction.y = transform.position.y;
-            direction.Normalize();
-            spawnedProjectile.SetDirection(direction);
+            foreach (var attackPoint in _attackPoints)
+            {
+                var spawnedProjectile = Instantiate(randomProjectile, attackPoint.position, attackPoint.rotation).GetComponent<BossProjectile>();
+                spawnedProjectile.Speed = _projectileSpeed;
+                Vector3 direction = attackPoint.position - transform.position;
+                direction.y = transform.position.y;
+                direction.Normalize();
+                spawnedProjectile.SetDirection(direction);
+            }
         }
         
     }

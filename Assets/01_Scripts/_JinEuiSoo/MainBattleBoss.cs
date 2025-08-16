@@ -10,27 +10,43 @@ namespace MainBattleScene
         [System.Serializable]
         public class BossBasicStats
         {
+            [Header("NormalMode")]
             [SerializeField] public int MaxHealth;
             [SerializeField] public int CurrentHealth;
-            [SerializeField] public float BossMoveSpeed;
-            [SerializeField] public bool CanMove = true;
+
+            [Header("BugMode")]
+            [SerializeField] public int BugMaxHealth;
+            [SerializeField] public int BugCurrentHealth;
         }
 
         [System.Serializable]
         public class BossDefaultMoveStats
         {
+            [Header("NormalMode")]
             [SerializeField] public float MoveSpeed;
             [SerializeField] public float RotationSpeed;
-
             [SerializeField] public float RetargetTime;
+            [Header("BugMode")]
+            [SerializeField] public float BugMoveSpeed;
+            [SerializeField] public float BugRotationSpeed;
+            [SerializeField] public float BugRetargetTime;
+
         }
 
         [System.Serializable]
         public class BossNormalAttackStats
         {
             [SerializeField] public BossProjectile[] BossProjectiles;
+
+            [Header("NormalMode")]
             [SerializeField] public float AttackRange;
             [SerializeField] public float AttackCooldown;
+            [SerializeField] public float ProjectileSpeed;
+            [Header("BugMode")]
+            [SerializeField] public float BugAttackRange;
+            [SerializeField] public float BugAttackCooldown;
+            [SerializeField] public float BugProjectileSpeed;
+
         }
 
         public void TakeDamage(int damage)

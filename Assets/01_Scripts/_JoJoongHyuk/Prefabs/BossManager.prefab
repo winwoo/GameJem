@@ -49,18 +49,25 @@ MonoBehaviour:
   BossBasicStats:
     MaxHealth: 50
     CurrentHealth: 50
-    BossMoveSpeed: 2
-    CanMove: 1
+    BugMaxHealth: 50
+    BugCurrentHealth: 50
   BossDefaultMoveStats:
     MoveSpeed: 2
     RotationSpeed: 2
     RetargetTime: 3
+    BugMoveSpeed: 10
+    BugRotationSpeed: 5
+    BugRetargetTime: 1
   BossNormalAttackStats:
     BossProjectiles:
     - {fileID: 9141618238930579647, guid: b7099a5b7c2e643e0b3d7518a76f4ca2, type: 3}
     - {fileID: 2713241981001070134, guid: eb740afe43e00401ab4bd47655d1f4fc, type: 3}
     AttackRange: 0
     AttackCooldown: 0.5
+    ProjectileSpeed: 2
+    BugAttackRange: 0
+    BugAttackCooldown: 0.1
+    BugProjectileSpeed: 10
   _currentActiveBossBehaviours: []
 --- !u!1001 &5220636810075425362
 PrefabInstance:
@@ -184,11 +191,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6432465983186417432, guid: d4bb9a4754efc40e4b6bf9bd55cbbf29, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.57735026
       objectReference: {fileID: 0}
     - target: {fileID: 6432465983186417432, guid: d4bb9a4754efc40e4b6bf9bd55cbbf29, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7071068
+      value: 0.57735026
+      objectReference: {fileID: 0}
+    - target: {fileID: 6432465983186417432, guid: d4bb9a4754efc40e4b6bf9bd55cbbf29, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.57735026
       objectReference: {fileID: 0}
     - target: {fileID: 6432465983186417432, guid: d4bb9a4754efc40e4b6bf9bd55cbbf29, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

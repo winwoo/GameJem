@@ -4,7 +4,7 @@ using UnityEngine;
 public class BossProjectile : MonoBehaviour
 {
         [SerializeField] private Vector3 _directionToward;
-        [SerializeField] private float _speed;
+        [SerializeField] public float Speed;
         [SerializeField] private int _damage;
         [SerializeField] private float _lifeTime;
         [SerializeField] public bool IsFixedPosition = false;
@@ -24,11 +24,10 @@ public class BossProjectile : MonoBehaviour
             //effect or sound play code
             Destroy(this.gameObject);
         }
-        // _directionToward = transform.position - MainBattleSceneManager.Instance.BossManager.Boss.transform.position;
-        // _directionToward.Normalize();
-        if(!IsFixedPosition)
+        
+        if (!IsFixedPosition)
         {
-            transform.Translate(_directionToward * (_speed * Time.deltaTime));
+            transform.Translate(_directionToward * (Speed * Time.deltaTime));
             // y값을 고정
             transform.position = new Vector3(transform.position.x, _fixedY, transform.position.z);
         }

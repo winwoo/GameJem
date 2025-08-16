@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
+    public bool IsBugMode = false;
+
     public virtual void Awake()
     {
         // Initialize the boss
