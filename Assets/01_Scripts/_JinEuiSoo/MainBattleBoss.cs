@@ -52,6 +52,7 @@ namespace MainBattleScene
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.IsBugMode)
             {
                 MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth += damage;
+                MainBattleSceneManager.Instance.BossHpBar.localScale *= 1.2f;
             }
             else
             {
