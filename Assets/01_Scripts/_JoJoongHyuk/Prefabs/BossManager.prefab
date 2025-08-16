@@ -51,7 +51,7 @@ MonoBehaviour:
     MaxHealth: 50
     CurrentHealth: 50
   BossDefaultMoveStats:
-    MoveSpeed: 2
+    MoveSpeed: 6
     RotationSpeed: 2
     RetargetTime: 3
     BugMoveSpeed: 20
