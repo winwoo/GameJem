@@ -109,7 +109,7 @@ public class SoundManager : BaseManager
     }
 
     // ====== SFX ======
-    public async UniTask PlaySFX(string key, float pitch = 1f)
+    public async UniTask PlaySFX(string key, float pitch = 1f, float volume = 0f)
     {
         string path = $"{_basePath}/SFX/{key}";
         var clip = await Managers.Resource.LoadAsync<AudioClip>(path);
@@ -118,7 +118,7 @@ public class SoundManager : BaseManager
         var src = GetSfx();
         src.clip = clip;
         src.pitch = pitch;
-        src.volume = SfxVolume;
+        src.volume = volume == 0 ? SfxVolume : volume;
         src.spatialBlend = 0f;
         src.transform.position = Vector3.zero;
         src.loop = false;

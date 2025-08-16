@@ -16,30 +16,30 @@ MonoBehaviour:
   - _type: 0
     _isBug: 1
     _folderName: "\uD50C\uB808\uC774\uC5B4 \uC774\uB3D9"
-    _normalCodeImage: {fileID: 0}
-    _bugCodeImage: {fileID: 0}
+    _normalCodeImage: {fileID: -4680934332221023011, guid: 5a4bcd5b2fd0b7f4493162b9d244a3ff, type: 3}
+    _bugCodeImage: {fileID: -3040259428472965993, guid: cc56d69f2b2fb284d87851b2fa01e402, type: 3}
   - _type: 1
     _isBug: 1
     _folderName: "\uD50C\uB808\uC774\uC5B4 \uACF5\uACA9"
-    _normalCodeImage: {fileID: 0}
-    _bugCodeImage: {fileID: 0}
+    _normalCodeImage: {fileID: -9061806644488459208, guid: da8613d50e2839449a3514ed5b7187f8, type: 3}
+    _bugCodeImage: {fileID: -8039152836485111058, guid: 9e4da8fb4b98429479d96d957d5fc7ed, type: 3}
   - _type: 2
     _isBug: 1
     _folderName: "\uD50C\uB808\uC774\uC5B4 \uB370\uC26C"
-    _normalCodeImage: {fileID: 0}
-    _bugCodeImage: {fileID: 0}
+    _normalCodeImage: {fileID: -4784937338391821702, guid: de47dc1ca403ff24593e7e0054583170, type: 3}
+    _bugCodeImage: {fileID: 2470398105516691031, guid: 9867fd22dc7497a4596cf8f5017e5463, type: 3}
   - _type: 3
     _isBug: 1
     _folderName: "\uBCF4\uC2A4 \uC774\uB3D9"
-    _normalCodeImage: {fileID: 0}
-    _bugCodeImage: {fileID: 0}
+    _normalCodeImage: {fileID: 1681887297143286151, guid: 3028a642e2ad35e4a8a888f0aea8db99, type: 3}
+    _bugCodeImage: {fileID: 7555627057548676326, guid: e5799a6683b30334cbec57a700bb4de5, type: 3}
   - _type: 4
     _isBug: 1
     _folderName: "\uBCF4\uC2A4 \uACF5\uACA9"
-    _normalCodeImage: {fileID: 0}
-    _bugCodeImage: {fileID: 0}
+    _normalCodeImage: {fileID: -7588444207106125122, guid: e1729d1874b1c454d9e0d71d2219686b, type: 3}
+    _bugCodeImage: {fileID: 1801526245519562317, guid: 946bc2916a2e96442a57d1e3b651654d, type: 3}
   - _type: 5
     _isBug: 1
     _folderName: "\uBCF4\uC2A4 \uCCB4\uB825"
-    _normalCodeImage: {fileID: 0}
-    _bugCodeImage: {fileID: 0}
+    _normalCodeImage: {fileID: -9157804261392840449, guid: da73cacd40e336f49adf92cc9dd33a38, type: 3}
+    _bugCodeImage: {fileID: -8663631314499864554, guid: c053d6b1b8050dc4b8a1e8513539d514, type: 3}
