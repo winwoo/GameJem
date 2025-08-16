@@ -21,6 +21,16 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound => Instance._sound;
     #endregion
 
+    #region Contents
+    private readonly BattleDesignManager _battleDesign = new BattleDesignManager();
+
+    public static BattleDesignManager BattleDesign => Instance._battleDesign;
+    #endregion
+
+    [SerializeField]
+    private InitBugType _initBugSetting;
+    public InitBugType InitBugSetting => _initBugSetting;
+
     private async void Awake()
     {
         await Init();
@@ -29,14 +39,6 @@ public class Managers : MonoBehaviour
     private void Start()
     {
         SetResolution(1920, 1080); // 원하는 해상도로 설정
-    }
-
-    private async void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            await UI.Open<UISample>();
-        }
     }
 
     #region Init
@@ -91,6 +93,7 @@ public class Managers : MonoBehaviour
             await s_instance._scene.Init();
             await s_instance._ui.Init();
             await s_instance._sound.Init();
+            await s_instance._battleDesign.Init();
         }
     }
 
@@ -102,6 +105,7 @@ public class Managers : MonoBehaviour
         await s_instance._data.Dispose();
         await s_instance._resource.Dispose();
         await s_instance._sound.Dispose();
+        await s_instance._battleDesign.Dispose();
         s_instance = null;
     }
     #endregion

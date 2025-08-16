@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -84,7 +85,7 @@ namespace MainBattleScene
         }
 
         // Condition, Boss or Player Health 0
-        public void ReportEndBattle()
+        public async void ReportEndBattle()
         {
             if (_isBattleEndCalled == true)
             {
@@ -92,8 +93,8 @@ namespace MainBattleScene
             }
 
             _isBattleEndCalled = true;
-            
-            Debug.Log("Call Game End");
+            await Managers.UI.Open<UISteam>();
+            await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
         }
         
     }
