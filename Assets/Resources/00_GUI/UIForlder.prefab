@@ -65,6 +65,7 @@ MonoBehaviour:
   _content: {fileID: 7921415932718338557}
   _btnBack1: {fileID: 2694253658927843246}
   _btnBack2: {fileID: 694410810789888084}
+  _btnUpdate: {fileID: 1217758437773138543}
 --- !u!1 &111826900632717435
 GameObject:
   m_ObjectHideFlags: 0
