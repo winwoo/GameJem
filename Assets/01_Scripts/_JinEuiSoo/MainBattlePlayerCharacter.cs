@@ -171,14 +171,17 @@ namespace MainBattleScene
         /// <param name="direction">Without Multiply deltaTime. Expect Programmer Apply it</param>
         public void MovePlayerCharacter(Vector3 direction)   
         {
+            float linearVelocity_Y = _rigidbody.linearVelocity.y;
             direction.y = _rigidbody.linearVelocity.y;;
             
             // Bug Feature. When 0 is false, Bug Feature will happen
             if (MainBattleSceneManager.Instance.PlayerFeatureConditions[0] == false)
             {
                 direction *= -1f;
+                
             }
             
+            direction.y = linearVelocity_Y;
             _rigidbody.linearVelocity = direction;
             
             

@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCharacterBasicStats:
-    MaxHealth: 50
-    CurrentHealth: 50
+    MaxHealth: 100
+    CurrentHealth: 100
     PlayerMoveSpeed: 5
     MouseHitAdjust: {x: 0, y: 0.5, z: 0}
     CanMove: 1
