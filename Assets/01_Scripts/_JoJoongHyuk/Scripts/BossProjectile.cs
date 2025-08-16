@@ -39,13 +39,14 @@ public class BossProjectile : MonoBehaviour
             _directionToward = direction;
         }
 
-        private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider collider)
     {
         if (collider.TryGetComponent<MainBattlePlayerCharacter>(out var mainBattlePlayerCharacter) == false)
         {
             return;
         }
-        
+
         mainBattlePlayerCharacter.PlayerCharacterGetDamage(_damage);
+        Destroy(this.gameObject);
     }
 }

@@ -62,7 +62,7 @@ public class BossManager : MonoBehaviour
             behaviour.PlayBehaviour();
         }
     }
-    
+
     public void RemoveBossBehaviour(BossBehaviour behaviour)
     {
         if (_currentActiveBossBehaviours.Contains(behaviour))
@@ -71,5 +71,15 @@ public class BossManager : MonoBehaviour
             _currentActiveBossBehaviours.Remove(behaviour);
             Destroy(behaviour);
         }
+    }
+    
+    public void RemoveAllBossBehaviours()
+    {
+        foreach (var behaviour in _currentActiveBossBehaviours)
+        {
+            behaviour.StopBehaviour();
+            Destroy(behaviour);
+        }
+        _currentActiveBossBehaviours.Clear();
     }
 }

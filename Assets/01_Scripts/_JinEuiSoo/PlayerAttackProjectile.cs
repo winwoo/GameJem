@@ -52,6 +52,7 @@ namespace MainBattleScene
             }
             
             mainBattleBoss.TakeDamage(_damage);
+            Destroy(this.gameObject);
             
         }
     }

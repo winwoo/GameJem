@@ -14,6 +14,7 @@ namespace MainBattleScene
         public BossManager BossManager;
 
         [SerializeField] private bool _endBattleTest;
+        [SerializeField] private bool _isBattleEndCalled = false;
         
         private void Awake()
         {
@@ -77,6 +78,12 @@ namespace MainBattleScene
         // Condition, Boss or Player Health 0
         public async void ReportEndBattle()
         {
+            if (_isBattleEndCalled == true)
+            {
+                return;
+            }
+
+            _isBattleEndCalled = true;
             await Managers.UI.Open<UISteam>();
             await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
         }
