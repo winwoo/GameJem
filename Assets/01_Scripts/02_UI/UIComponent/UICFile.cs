@@ -18,17 +18,21 @@ public class UICFile : MonoBehaviour
     private Sprite _codeImg;
 
     private DateTime _selectTime;
+    public bool IsBug { get; private set; }
+    private Action<UICFile> _onClickFile;
     private void Awake()
     {
         _textName.text = string.Empty;
     }
 
-    public void InitFile(Sprite codeImg, string name)
+    public void InitFile(Sprite codeImg, string name, bool isBug, Action<UICFile> onClickFile)
     {
         _codeImg = codeImg;
         _textName.text = $"{name}.txt";
         _btnIcon.onClick.AddListener(OnClickFile);
         _imgSelect.gameObject.SetActive(false); // 선택 이미지 비활성화
+        IsBug = isBug;
+        _onClickFile = onClickFile;
     }
 
     public void SetSelct(bool active)
@@ -36,16 +40,19 @@ public class UICFile : MonoBehaviour
         _imgSelect.gameObject.SetActive(active);
     }
 
-    private void OnClickFile()
+    private async void OnClickFile()
     {
         if (_selectTime != default && (DateTime.Now - _selectTime).TotalSeconds < 0.5f)
         {
             // 더블 클릭 처리
-            Debug.Log("img open");
             SetSelct(false);
+
+            UICode uiCode = await Managers.UI.Open<UICode>();
+            uiCode.SetCode(_codeImg);
             return;
         }
         _selectTime = DateTime.Now;
         SetSelct(true);
+        _onClickFile?.Invoke(this);
     }
 }

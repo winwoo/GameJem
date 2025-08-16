@@ -23,15 +23,21 @@ public class UIForlder : UIBase
     [SerializeField]
     [Link]
     private Button _btnBack2;
+    [SerializeField]
+    [Link]
+    private Button _btnUpdate;
 
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
     private DateTime _selectTime;
+    private List<InitBugTypeData> _originBugs;
     public override void OnCreate(object ctx)
     {
         base.OnCreate(ctx);
         _btnBack1.onClick.AddListener(OnBack);
         _btnBack2.onClick.AddListener(OnBack);
+        _btnUpdate.onClick.AddListener(OnUpdate);
+        _originBugs = Managers.Instance.InitBugSetting.InitBugData.ToList();
         CreateFolder(_folder, _content.transform);
     }
 
@@ -122,5 +128,24 @@ public class UIForlder : UIBase
             return;
         }
         _selectFolder.ExitFolder();
+    }
+
+    private void OnUpdate()
+    {
+        var datas = Managers.Instance.InitBugSetting.InitBugData;
+        bool noModified = true;
+        foreach (var data in datas)
+        {
+            if (data.IsBug != _originBugs.Find(x => x.Type == data.Type).IsBug)
+            {
+                noModified = false;
+                break;
+            }
+        }
+
+        if (noModified)
+        {
+            return;
+        }
     }
 }

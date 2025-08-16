@@ -31,7 +31,7 @@ public class InitBugTypeData
     private Sprite _bugCodeImage;
 
     public BattleBugType Type => _type;
-    public bool IsBug => _isBug;
+    public bool IsBug { get; set; }
     public string FolderName => _folderName;
     public Sprite NormalCodeImage => _normalCodeImage;
     public Sprite BugCodeImage => _bugCodeImage;

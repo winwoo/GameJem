@@ -40,14 +40,16 @@ public class UICFolder : MonoBehaviour
 
     private void CreateFile(UICFile origin, int count, Transform parent)
     {
+        int bugIndex = UnityEngine.Random.Range(0, 2); // 0 또는 1을 랜덤으로 선택
         // 원본 _file을 복제하여 새로운 UICFile 인스턴스를 생성
         for (int i = 0; i < count; i++)
         {
             UICFile newFile = Instantiate(origin, transform);
-            newFile.name = i == 0 ? "정상" : "버그";
             newFile.transform.SetParent(parent, false); // 부모 설정
             newFile.gameObject.SetActive(false); // 활성화
-            newFile.InitFile(i == 0 ? _data.NormalCodeImage : _data.BugCodeImage, $"{i + 1}");
+            bool isBug = i == bugIndex; // 현재 인덱스가 버그 인덱스인지 확인
+            newFile.name = isBug ? "정상" : "버그";
+            newFile.InitFile(isBug ? _data.NormalCodeImage : _data.BugCodeImage, $"{i + 1}", isBug, OnClickFile);
             _files.Add(newFile);
         }
     }
@@ -81,6 +83,11 @@ public class UICFolder : MonoBehaviour
     private void OnClickFolder()
     {
         _onClickFolder.Invoke(this);
+    }
+
+    private void OnClickFile(UICFile file)
+    {
+        _data.IsBug = file.IsBug;
     }
 
     private void SetActiveFolderComponents(bool active)
