@@ -48,8 +48,8 @@ public class UICFolder : MonoBehaviour
             newFile.transform.SetParent(parent, false); // 부모 설정
             newFile.gameObject.SetActive(false); // 활성화
             bool isBug = i == bugIndex; // 현재 인덱스가 버그 인덱스인지 확인
-            newFile.name = isBug ? "정상" : "버그";
-            newFile.InitFile(isBug ? _data.NormalCodeImage : _data.BugCodeImage, $"{i + 1}", isBug, OnClickFile);
+            newFile.name = !isBug ? "정상" : "버그";
+            newFile.InitFile(!isBug ? _data.NormalCodeImage : _data.BugCodeImage, $"{i + 1}", isBug, OnClickFile);
             _files.Add(newFile);
         }
     }

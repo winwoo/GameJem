@@ -122,6 +122,7 @@ public class UIForlder : UIBase
             folder.gameObject.SetActive(true);
         }
         _btnUpdate.gameObject.SetActive(true); // 업데이트 버튼 활성화
+        DebugPrint();
     }
 
     private void OnBack()
@@ -149,6 +150,15 @@ public class UIForlder : UIBase
 
         if (noModified)
         {
+            Action<bool> action = async (isOk) =>
+            {
+                if(!isOk)
+                    return;
+
+                await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+                await CloseUI();
+            };
+            await Managers.UI.Open<UISystem>(action);
             return;
         }
 
