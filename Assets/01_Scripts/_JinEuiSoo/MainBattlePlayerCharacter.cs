@@ -33,6 +33,11 @@ namespace MainBattleScene
 
         private void Start()
         {
+            bool[] playerFeatureConditions = MainBattleSceneManager.Instance.PlayerFeatureConditions;
+            playerFeatureConditions[0] = !Managers.Instance.IsBug(BattleBugType.PlayerMove);
+            playerFeatureConditions[1] = !Managers.Instance.IsBug(BattleBugType.PlayerAttack);
+            playerFeatureConditions[2] = !Managers.Instance.IsBug(BattleBugType.PlayerDash);
+
             _camera = Camera.main;
             
             _manager = MainBattleSceneManager.Instance;
