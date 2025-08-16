@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCharacterBasicStats:
-    MaxHealth: 30
-    CurrentHealth: 30
+    MaxHealth: 500000
+    CurrentHealth: 500000
     PlayerMoveSpeed: 5
     MouseHitAdjust: {x: 0, y: 0.5, z: 0}
     CanMove: 1
@@ -61,4 +61,11 @@ MonoBehaviour:
     DashPower: 10
     DashDuration: 1
     DashCooldown: 3
+    DashBugPower: 55
+    DashBugDuration: 5
+    DashBugCooldown: 3
+  PlayerCharacterAbilitySpecialAStats:
+    LaserPower: 0
+    LaserDuration: 0
+    LaserCooldown: 0
   PlayerCharacter: {fileID: 0}

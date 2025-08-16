@@ -14,6 +14,11 @@ namespace MainBattleScene
 
         [SerializeField] private bool _endBattleTest;
         [SerializeField] private bool _isBattleEndCalled = false;
+
+        [SerializeField] private bool[] playerFeatureConditions;
+        public bool[] PlayerFeatureConditions => playerFeatureConditions;
+        [SerializeField] private bool[] _bossFeatureConditions;
+        public bool[] BossFeatureConditions => _bossFeatureConditions;
         
         private void Awake()
         {
@@ -40,6 +45,10 @@ namespace MainBattleScene
             }
             
             InitializeSectionStart: ;
+
+            AwakeUpdate();
+            
+            
             
 
         }
