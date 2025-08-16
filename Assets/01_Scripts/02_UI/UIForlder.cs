@@ -31,14 +31,13 @@ public class UIForlder : UIBase
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
     private DateTime _selectTime;
-    private Dictionary<BattleBugType, bool> _originBugs = new Dictionary<BattleBugType, bool>();
     public override void OnCreate(object ctx)
     {
         base.OnCreate(ctx);
         _btnBack1.onClick.AddListener(OnBack);
         _btnBack2.onClick.AddListener(OnBack);
         _btnUpdate.onClick.AddListener(OnUpdate);
-        _originBugs = Managers.Instance.InitBugSetting
+        Managers.Instance.OriginBugs = Managers.Instance.InitBugSetting
             .ToDictionary(data => data.Type, data => data.IsBug);
         CreateFolder(_folder, _content.transform);
     }
@@ -141,7 +140,7 @@ public class UIForlder : UIBase
         bool noModified = true;
         foreach (var data in datas)
         {
-            if(_originBugs[data.Type] == data.IsBug)
+            if(Managers.Instance.OriginBugs[data.Type] == data.IsBug)
                 continue;
 
             noModified = false;
@@ -169,7 +168,7 @@ public class UIForlder : UIBase
     private void DebugPrint()
     {
         string origin = "";
-        foreach (var data in _originBugs)
+        foreach (var data in Managers.Instance.OriginBugs)
         {
             origin += $"{data.Key}: {data.Value}\n";
         }
