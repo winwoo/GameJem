@@ -14,6 +14,9 @@ public class UICFile : MonoBehaviour
     [SerializeField]
     [Link]
     protected Button _btnIcon;
+    [SerializeField]
+    [Link]
+    protected Transform _iconCheck;
 
     private Sprite _codeImg;
 
@@ -38,6 +41,7 @@ public class UICFile : MonoBehaviour
     public void SetSelct(bool active)
     {
         _imgSelect.gameObject.SetActive(active);
+        _iconCheck.gameObject.SetActive(active);
     }
 
     private async void OnClickFile()

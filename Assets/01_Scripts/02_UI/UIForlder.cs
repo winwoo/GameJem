@@ -31,6 +31,12 @@ public class UIForlder : UIBase
     [SerializeField]
     [Link]
     private TextMeshProUGUI _textDesc;
+    [SerializeField]
+    [Link]
+    private Image _imgBlank;
+    [SerializeField]
+    [Link]
+    private TextMeshProUGUI _textPath;
 
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
@@ -45,6 +51,8 @@ public class UIForlder : UIBase
             .ToDictionary(data => data.Type, data => data.IsBug);
         CreateFolder(_folder, _content.transform);
         _textDesc.gameObject.SetActive(false); // 설명 텍스트 비활성화
+        _imgBlank.gameObject.SetActive(true); 
+        _textPath.gameObject.SetActive(false); 
     }
 
     private void CreateFolder(UICFolder origin, Transform parent)
@@ -115,6 +123,9 @@ public class UIForlder : UIBase
         _selectFolder.EnterFolder(OnExitFolder);
         _btnUpdate.gameObject.SetActive(false); // 업데이트 버튼 비활성화
         _textDesc.gameObject.SetActive(true);
+        _imgBlank.gameObject.SetActive(false); 
+        _textPath.gameObject.SetActive(true);
+        _textPath.text = _selectFolder.FolderName; // 현재 폴더 경로 표시
     }
 
     private void OnExitFolder(UICFolder exitFolder)
@@ -128,6 +139,8 @@ public class UIForlder : UIBase
         }
         _btnUpdate.gameObject.SetActive(true); // 업데이트 버튼 활성화
         _textDesc.gameObject.SetActive(false);
+        _imgBlank.gameObject.SetActive(true);
+        _textPath.gameObject.SetActive(false);
         DebugPrint();
     }
 

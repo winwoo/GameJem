@@ -28,6 +28,7 @@ public class UICFolder : MonoBehaviour
     private Action<UICFolder> _onClickFolder;
     private Action<UICFolder> _onExitFolder;
     public int Index { get; private set; }
+    public string FolderName => _data.FolderName;
     public void InitFolder(InitBugTypeData data, Action<UICFolder> onClickFolder, int index)
     {
         _data = data;
