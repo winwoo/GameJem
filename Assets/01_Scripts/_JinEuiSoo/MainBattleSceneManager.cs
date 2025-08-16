@@ -13,6 +13,7 @@ namespace MainBattleScene
         public BossManager BossManager;
 
         [SerializeField] private bool _endBattleTest;
+        [SerializeField] private bool _isBattleEndCalled = false;
         
         private void Awake()
         {
@@ -76,6 +77,13 @@ namespace MainBattleScene
         // Condition, Boss or Player Health 0
         public void ReportEndBattle()
         {
+            if (_isBattleEndCalled == true)
+            {
+                return;
+            }
+
+            _isBattleEndCalled = true;
+            
             Debug.Log("Call Game End");
         }
         

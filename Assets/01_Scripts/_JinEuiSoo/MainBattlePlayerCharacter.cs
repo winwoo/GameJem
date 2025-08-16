@@ -196,7 +196,7 @@ namespace MainBattleScene
             Debug.Log("Player Death");
             PlayerBasicStats.CurrentHealth = 0;
             
-            MainBattleSceneManager.Instance.ReportEndBattle();
+            Destroy(this.gameObject);
 
         }
         
