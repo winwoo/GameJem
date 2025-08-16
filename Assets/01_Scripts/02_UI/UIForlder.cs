@@ -134,7 +134,6 @@ public class UIForlder : UIBase
 
     private async void OnUpdate()
     {
-        DebugPrint();
         var datas = Managers.Instance.InitBugSetting.InitBugData;
         bool noModified = true;
         foreach (var data in datas)
@@ -152,6 +151,7 @@ public class UIForlder : UIBase
         }
 
         await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+        await CloseUI();
     }
 
     private void DebugPrint()
