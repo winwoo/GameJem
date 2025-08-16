@@ -37,6 +37,7 @@ public class UISteam : UIBase
 
     private string[] _scoreText = new string[]
     {
+        "압도적 부정적",
         "매우 부정적",
         "대체로 부정적",
         "복합적",
@@ -60,11 +61,13 @@ public class UISteam : UIBase
     public override async UniTask ShowAsync(object args = null)
     {
         await base.ShowAsync(args);
-        while(_texts.anchoredPosition.y < 80 && _afterCount > 0)
+        _dialog.gameObject.SetActive(false);
+        while (_texts.anchoredPosition.y < 80 && _afterCount > 0)
         {
             await UniTask.Yield();
             _texts.anchoredPosition += new Vector2(0, 30 * Time.deltaTime);
         }
+        _dialog.gameObject.SetActive(true);
         await _dialog.StartDialog(_dialogData[_afterCount]);
         OnClickClose();
     }

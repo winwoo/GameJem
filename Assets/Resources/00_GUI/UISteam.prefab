@@ -70,8 +70,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 804dbb92e82de1a43981f92ea4985eea, type: 2}
   - {fileID: 11400000, guid: 8af60f69b37ed7540b89efb1f15b60ef, type: 2}
   - {fileID: 11400000, guid: 2bd9ccbf95281f148ae8b88410ac5139, type: 2}
-  - {fileID: 11400000, guid: a99ffa8ed096eed4596ed0cf29e89202, type: 2}
   - {fileID: 11400000, guid: 79a2f7a80f8094c42b1fa605b710d4bc, type: 2}
+  - {fileID: 11400000, guid: a99ffa8ed096eed4596ed0cf29e89202, type: 2}
+  - {fileID: 11400000, guid: bdc64d175500e1d4fae7cd10e95f04b7, type: 2}
 --- !u!1 &996893770514274212
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,7 +108,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 324.4644, y: 74.5551}
+  m_SizeDelta: {x: 601.5431, y: 74.5551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4181348376788693602
 CanvasRenderer:
@@ -439,7 +440,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 324.4644, y: 74.5551}
+  m_SizeDelta: {x: 601.5431, y: 74.5551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2585283723180760702
 CanvasRenderer:

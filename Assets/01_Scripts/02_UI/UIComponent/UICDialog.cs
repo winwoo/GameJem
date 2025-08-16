@@ -13,6 +13,9 @@ public class UICDialog : MonoBehaviour
     [Link]
     private TextMeshProUGUI _dialogText;
     [SerializeField]
+    [Link]
+    private Image _imgArrow;
+    [SerializeField]
     private DialogData _dialog;
     [SerializeField]
     private Color _symbolColor;
@@ -29,7 +32,8 @@ public class UICDialog : MonoBehaviour
     {
         _endDialog = false;
         _endSentence = false;
-        if(data != null)
+        _imgArrow.gameObject.SetActive(false);
+        if (data != null)
         {
             _dialog = data;
         }
@@ -47,6 +51,7 @@ public class UICDialog : MonoBehaviour
         }
 
         _endSentence = true;
+        _imgArrow.gameObject.SetActive(true);
         while (!_endDialog)
         {
             await UniTask.Yield(); // Wait until the dialog is closed
