@@ -10,13 +10,9 @@ namespace MainBattleScene
         [System.Serializable]
         public class BossBasicStats
         {
-            [Header("NormalMode")]
+            [SerializeField] public bool IsBugMode;
             [SerializeField] public int MaxHealth;
             [SerializeField] public int CurrentHealth;
-
-            [Header("BugMode")]
-            [SerializeField] public int BugMaxHealth;
-            [SerializeField] public int BugCurrentHealth;
         }
 
         [System.Serializable]
@@ -51,7 +47,15 @@ namespace MainBattleScene
 
         public void TakeDamage(int damage)
         {
-            MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth -= damage;
+            if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.IsBugMode)
+            {
+                MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth += damage;
+            }
+            else
+            {
+                MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth -= damage;
+            }
+
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
             {
                 Die();
@@ -64,5 +68,31 @@ namespace MainBattleScene
             MainBattleSceneManager.Instance.BossManager.RemoveAllBossBehaviours();
             Destroy(gameObject);
         }
+
+#if false
+        public void TakeDamage(int damage)
+        {
+            //플레이어가 공격한 데미지만큼 보스의 체력이 증가하는 코드
+            MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth += damage;
+
+            if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+#endif
+
+#if false
+        public void TakeDamage(int damage)
+        {
+            //플레이어가 공격한 데미지만큼 보스의 체력이 감소되는 코드
+            MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth -= damage;
+
+            if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
+            {
+                Die();
+            }
+        }
+#endif
     }
 }
