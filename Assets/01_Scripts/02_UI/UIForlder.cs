@@ -19,7 +19,10 @@ public class UIForlder : UIBase
 
     [SerializeField]
     [Link]
-    private Button _btnBack;
+    private Button _btnBack1;
+    [SerializeField]
+    [Link]
+    private Button _btnBack2;
 
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
@@ -27,7 +30,8 @@ public class UIForlder : UIBase
     public override void OnCreate(object ctx)
     {
         base.OnCreate(ctx);
-        _btnBack.onClick.AddListener(OnBack);
+        _btnBack1.onClick.AddListener(OnBack);
+        _btnBack2.onClick.AddListener(OnBack);
         CreateFolder(_folder, _content.transform);
     }
 
