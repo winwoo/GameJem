@@ -47,10 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Boss: {fileID: 3731740449678667291}
   BossBasicStats:
+    IsBugMode: 0
     MaxHealth: 50
     CurrentHealth: 50
-    BugMaxHealth: 50
-    BugCurrentHealth: 50
   BossDefaultMoveStats:
     MoveSpeed: 2
     RotationSpeed: 2
@@ -64,7 +63,7 @@ MonoBehaviour:
     - {fileID: 2713241981001070134, guid: eb740afe43e00401ab4bd47655d1f4fc, type: 3}
     AttackRange: 0
     AttackCooldown: 0.5
-    ProjectileSpeed: 2
+    ProjectileSpeed: 5
     BugAttackRange: 0
     BugAttackCooldown: 0.1
     BugProjectileSpeed: 20

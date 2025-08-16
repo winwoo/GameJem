@@ -24,7 +24,10 @@ public class BossManager : MonoBehaviour
 
     private void Start()
     {
-        
+        if(Managers.Instance.InitBugSetting.InitBugData[3].IsBug)
+        {
+            BossBasicStats.IsBugMode = true;
+        }
 
         //Test
         for (int i = 0; i < 2; i++)
@@ -49,9 +52,11 @@ public class BossManager : MonoBehaviour
         {
             case 0:
                 behaviour = Boss.gameObject.AddComponent<BossDefaultMoveBehaviour>();
+                behaviour.IsBugMode = Managers.Instance.InitBugSetting.InitBugData[3].IsBug;
                 break;
             case 1:
                 behaviour = Boss.gameObject.AddComponent<BossNormalAttackBehaviour>();
+                behaviour.IsBugMode = Managers.Instance.InitBugSetting.InitBugData[4].IsBug;
                 break;
             default:
                 Debug.LogWarning("Unknown Boss Behaviour Type");
@@ -74,7 +79,7 @@ public class BossManager : MonoBehaviour
             Destroy(behaviour);
         }
     }
-    
+
     public void RemoveAllBossBehaviours()
     {
         foreach (var behaviour in _currentActiveBossBehaviours)
@@ -83,5 +88,7 @@ public class BossManager : MonoBehaviour
             Destroy(behaviour);
         }
         _currentActiveBossBehaviours.Clear();
+        
+
     }
 }
