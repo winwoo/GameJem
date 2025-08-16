@@ -1,5 +1,8 @@
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Linq;
 
 public class Managers : MonoBehaviour
 {
@@ -22,6 +25,7 @@ public class Managers : MonoBehaviour
     #endregion
     [SerializeField]
     private InitBugType _initBugSetting;
+    private Dictionary<BattleBugType, InitBugTypeData> _bugDic = new();
     public InitBugType InitBugSetting => _initBugSetting;
 
     public int PlayCount { get; set; } = 0; // 플레이 횟수
@@ -29,9 +33,10 @@ public class Managers : MonoBehaviour
     private async void Awake()
     {
         await Init();
-        foreach(var bug in _initBugSetting.InitBugData) // 초기 버그 설정
+        foreach (var bug in _initBugSetting.InitBugData) // 초기 버그 설정
         {
             bug.IsBug = true; // 모든 버그를 비활성화
+            _bugDic[bug.Type] = bug;
         }
         PlayCount = 0;
     }
@@ -105,6 +110,12 @@ public class Managers : MonoBehaviour
         await s_instance._resource.Dispose();
         await s_instance._sound.Dispose();
         s_instance = null;
+    }
+
+    public bool IsBug(BattleBugType type)
+    {
+        _bugDic.TryGetValue(type, out InitBugTypeData data);
+        return data.IsBug;
     }
     #endregion
 }
