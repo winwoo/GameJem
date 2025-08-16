@@ -328,9 +328,12 @@ namespace MainBattleScene
         {
             PlayerBasicStats.CurrentHealth -= damage;
 
+            MainBattleSceneManager.Instance.UpdatePlayerHealthUI();
+
             // Check And Report End Battle
             if (PlayerBasicStats.CurrentHealth <= 0)
             {
+                MainBattleSceneManager.Instance.PlayerHpBar.gameObject.SetActive(false);
                 CallPlayerDeath();
             }
             
