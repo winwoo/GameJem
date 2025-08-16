@@ -5,8 +5,6 @@ namespace MainBattleScene
 
     public class MainBattleBoss : MonoBehaviour
     {
-        [SerializeField] public Transform[] AttackPoints;
-
         [System.Serializable]
         public class BossBasicStats
         {
@@ -19,18 +17,10 @@ namespace MainBattleScene
         [System.Serializable]
         public class BossDefaultMoveStats
         {
-            [SerializeField] public float MoveSpeed;
-            [SerializeField] public float RotationSpeed;
-
-            [SerializeField] public float RetargetTime;
+            [SerializeField]
+            private float _moveSpeed = 5f;
         }
+        
 
-        [System.Serializable]   
-        public class BossNormalAttackStats
-        {
-            [SerializeField] public BossProjectile[] BossProjectiles;
-            [SerializeField] public float AttackRange;
-            [SerializeField] public float AttackCooldown;
-        }
     }
 }
