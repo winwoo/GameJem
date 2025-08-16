@@ -76,9 +76,9 @@ public class UISteam : UIBase
     {
         string text = _scoreText[count];
         string hex = "";
-        if (count < 2)
+        if (count < 3)
             hex = ColorUtility.ToHtmlStringRGB(_badColor);
-        else if (count < 3)
+        else if (count == 3)
             hex = ColorUtility.ToHtmlStringRGB(_neutralColor);
         else
             hex = ColorUtility.ToHtmlStringRGB(_goodColor);
@@ -97,7 +97,7 @@ public class UISteam : UIBase
         }
         else
         {
-            await Managers.UI.Open<UIEnding>();
+            await Managers.UI.Open<UIEnding>(!allBugsFixed);
         }
         Managers.Instance.PlayCount++;
         await CloseUI();

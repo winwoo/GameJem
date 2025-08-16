@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5892497f641be784ebfb03c847a1d58a
+guid: 8f34c2c2c652c124ca62829342180b75
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3839998535632533109
-    second: page_happyending_0
+      213: -8506140151806181513
+    second: gui_boss_hpBar_in_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: page_happyending_0
+      name: gui_boss_hpBar_in_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 751
-        height: 529
+        width: 591
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 576b56ea25a6a4530800000000000000
-      internalID: 3839998535632533109
+      spriteID: 77fb7e1799e14f980800000000000000
+      internalID: -8506140151806181513
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      page_happyending_0: 3839998535632533109
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

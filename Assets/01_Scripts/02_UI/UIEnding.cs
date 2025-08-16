@@ -41,8 +41,15 @@ public class UIEnding : UIBase
         {
             await _dialog.StartDialog(_happyEndingDialog);
         }
-        Managers.Instance.IsIntro = false;
-        await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
-        await CloseUI();
+        if (_isBad)
+        {
+            Managers.Instance.IsIntro = false;
+            await Managers.Scene.LoadSceneAsync(Define.Scene.Title);
+            await CloseUI();
+        }
+        else
+        {
+            Application.Quit();
+        }
     }
 }
