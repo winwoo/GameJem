@@ -99,6 +99,7 @@ namespace MainBattleScene
             _directionToMouseHit = Vector3.Normalize(_directionToMouseHit);
         }
 
+        // Debug Case 1 -> Player will attack to the wrong position 
         void ActionPlayerAttack()
         {
             if (Input.GetMouseButtonDown(0) == false)
@@ -120,7 +121,6 @@ namespace MainBattleScene
             projectileGameObject.GetComponent<PlayerAttackProjectile>().Initialize(projectilesDirection, 
                 PlayerAttackStats.ProjectileSpeed, PlayerAttackStats.ProjectileDamage, PlayerAttackStats.ProjectileLifeTime);
         }
-
         
         // Player Feature move Normal <-> Player Feature move Bug
         // Both controlled in this method
@@ -143,35 +143,137 @@ namespace MainBattleScene
         }
 
 #if false // Move Right
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public void MovePlayerCharacter(Vector3 direction)   
         {
-            //
             // 플레이어 캐릭터의 속도 조절!
-            //
             direction.y = _rigidbody.linearVelocity.y;;
             
-            //
             // 키보드 화살표 방향으로 이동 시키기!
-            //
             _rigidbody.linearVelocity = direction;
             
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
 #endif
 
 #if false // Move - Bug
+
+
+
+
+
+
+
+
+
+
         public void MovePlayerCharacter(Vector3 direction)   
         {
-            //
             // 플레이어 캐릭터의 속도 조절!
-            //
             direction.y = _rigidbody.linearVelocity.y;;
             
-            //
             // 키보드와 반대 방향으로 이동 시키기!
-            //
             _rigidbody.linearVelocity = direction * -1f;
             
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+#endif
+
+#if false
+
+
+        private Vector3 _directionToMousePosition;
+
+
+
+        void ActionPlayerAttack()
+        {
+            if (Input.GetMouseButtonDown(0) == false)
+            {
+                return;
+            }
+            // 플레이어 캐릭터의 공격을 시작하기!!
+            GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
+            projectileGameObject.transform.position =
+                transform.position + PlayerAttackStats.ProjectileSpawnRelatedPosition;
+            // 플레이어 캐릭터의 공격 방향을 마우스 위치로 설정하기!!
+            Vector3 projectilesDirection = _directionToMousePosition;
+            
+            projectileGameObject.GetComponent<PlayerAttackProjectile>().
+                Initialize(projectilesDirection, 
+                PlayerAttackStats.ProjectileSpeed, 
+                PlayerAttackStats.ProjectileDamage, 
+                PlayerAttackStats.ProjectileLifeTime);
+        }
+
+        
+        
+        
+        
+        
+#endif
+        
+#if false
+        
+
+
+
+
+
+        private Vector3 _directionToMousePosition;
+
+
+
+        void ActionPlayerAttack()
+        {
+            if (Input.GetMouseButtonDown(0) == false)
+            {
+                return;
+            }
+            // 플레이어 캐릭터의 공격을 시작하기!!
+            GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
+            projectileGameObject.transform.position =
+                transform.position + PlayerAttackStats.ProjectileSpawnRelatedPosition;
+            // 플레이어 캐릭터의 공격 방향을 카메라 위치로 설정하기!!
+            Vector3 projectilesDirection = _directionToMousePosition;
+            
+            projectileGameObject.GetComponent<PlayerAttackProjectile>().
+                Initialize(projectilesDirection, 
+                PlayerAttackStats.ProjectileSpeed, 
+                PlayerAttackStats.ProjectileDamage, 
+                PlayerAttackStats.ProjectileLifeTime);
+        }
+
+        
+        
+        
+        
+        
 #endif
 
         public async UniTask KnockBackPlayerCharacter(Vector3 totalRelatedAmountMovePosition, float time)

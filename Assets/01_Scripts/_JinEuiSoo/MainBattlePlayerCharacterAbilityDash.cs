@@ -100,15 +100,12 @@ namespace MainBattleScene
             _innerCoolTimeToDashing = _playerCharacterAbilityDashStats.DashCooldown;
             _playerCharacterBasicStats.CanDashing = false;
             
-            //
+            
             // Dash Power 를 기본 값으로 설정하기!!
-            //
             float dashPower = _playerCharacterAbilityDashStats.DashPower;
             float dashDuration = _playerCharacterAbilityDashStats.DashDuration;
             
-            //
             // PlayerCharacter 대쉬 시작하기!!
-            //
             DashingPlayerCharacter(_playerCharacter.DirectionToMouseHit 
                                    * dashPower, dashDuration).Forget();
             
@@ -155,20 +152,20 @@ namespace MainBattleScene
             _innerCoolTimeToDashing = _playerCharacterAbilityDashStats.DashCooldown;
             _playerCharacterBasicStats.CanDashing = false;
             
-            float dashPower = _playerCharacterAbilityDashStats.DashPower;
-            float dashDuration = _playerCharacterAbilityDashStats.DashDuration;
-
-            if (MainBattleSceneManager.Instance.PlayerFeatureConditions[2] == false) // bug Condition;
-            {
-                dashPower = _playerCharacterAbilityDashStats.DashBugPower;
-                dashDuration = _playerCharacterAbilityDashStats.DashBugDuration;
-            }
+            // Dash Power 를 곱셈 값으로 설정하기!!
+            float dashPower = _playerCharacterAbilityDashStats.DashPower * 15f;
+            float dashDuration = _playerCharacterAbilityDashStats.DashDuration * 20f;
             
-            DashingPlayerCharacter(_playerCharacter.DirectionToMouseHit * dashPower,
-                dashDuration).Forget();
+            // PlayerCharacter 대쉬 시작하기!!
+            DashingPlayerCharacter(_playerCharacter.DirectionToMouseHit 
+                                   * dashPower, dashDuration).Forget();
             
             
         }
+        
+        
+        
+        
 #endif
         
         

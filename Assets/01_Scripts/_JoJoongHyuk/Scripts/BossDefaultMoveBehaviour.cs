@@ -59,7 +59,11 @@ public class BossDefaultMoveBehaviour : BossBehaviour
         base.StopBehaviour();
     }
 
-    #if false
+    #if flase
+    
+    
+    
+    
     public override void UpdateBehaviour()
     {
         base.UpdateBehaviour();
@@ -74,6 +78,17 @@ public class BossDefaultMoveBehaviour : BossBehaviour
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _moveSpeed * Time.deltaTime);
     }
 
+    
+    
+    
+    
+
+#endif
+
+#if false
+
+
+
 
     
     public override void UpdateBehaviour()
@@ -81,12 +96,17 @@ public class BossDefaultMoveBehaviour : BossBehaviour
         base.UpdateBehaviour();
 
         //보스 이동 속도 밸런스 조절된 수치 적용
-        _moveSpeed = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.MoveSpeedf;
+        _moveSpeed = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.MoveSpeed;
         _rotateSpeed = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.RotationSpeed;
         _retargetTime = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.RetargetTime;
 
         _currentTime += Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _moveSpeed * Time.deltaTime);
     }
+    
+    
+    
+    
+    
 #endif
 }

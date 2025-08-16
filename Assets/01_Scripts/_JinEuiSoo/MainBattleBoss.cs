@@ -70,6 +70,14 @@ namespace MainBattleScene
         }
 
 #if false
+        
+        
+        
+        
+        
+        
+        
+        
         public void TakeDamage(int damage)
         {
             //플레이어가 공격한 데미지만큼 보스의 체력이 증가하는 코드
@@ -80,9 +88,25 @@ namespace MainBattleScene
                 Die();
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        
 #endif
 
 #if false
+        
+        
+        
+        
+        
+        
+        
+        
         public void TakeDamage(int damage)
         {
             //플레이어가 공격한 데미지만큼 보스의 체력이 감소되는 코드
@@ -93,6 +117,14 @@ namespace MainBattleScene
                 Die();
             }
         }
+        
+        
+        
+        
+        
+        
+        
+        
 #endif
     }
 }

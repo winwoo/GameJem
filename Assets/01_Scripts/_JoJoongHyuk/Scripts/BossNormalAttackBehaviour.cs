@@ -103,6 +103,13 @@ public class BossNormalAttackBehaviour : BossBehaviour
     }
 
 #if false
+    
+    
+    
+    
+    
+    
+    
     private async UniTask FireProjectile()
     {
         while (true)
@@ -112,15 +119,26 @@ public class BossNormalAttackBehaviour : BossBehaviour
                 Debug.LogWarning("No projectiles or attack points available for Boss Normal Attack Behaviour.");
                 return;
             }
+            
             //Boss 투사체 0.1초당 한발씩 발사하도록 셋팅하기 
-            _attackCooldown = 1f;
-            await UniTask.delay((int)(_attackCooldown * 100));
+            _attackCooldown = 0.1f;
+            await UniTask.WaitForSeconds(_attackCooldown);
             SpawnProjectile();
         }
     }
+    
+    
+    
+    
+    
 
 
-
+#endif
+    
+#if false
+    
+    
+    
 
     private async UniTask FireProjectile()
     {
@@ -131,12 +149,16 @@ public class BossNormalAttackBehaviour : BossBehaviour
                 Debug.LogWarning("No projectiles or attack points available for Boss Normal Attack Behaviour.");
                 return;
             }
+            
             //Boss 투사체 1초당 한발씩 발사하도록 셋팅하기
             _attackCooldown = 1f;
-            await UniTask.delay((int)(_attackCooldown * 1000));
+            await UniTask.WaitForSeconds(_attackCooldown);
             SpawnProjectile();
         }
     }
 
+    
+    
+    
 #endif
 }
