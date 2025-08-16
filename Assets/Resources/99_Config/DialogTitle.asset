@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fb0b0ec18fc674ca814845e8cb6b69, type: 3}
+  m_Name: DialogTitle
+  m_EditorClassIdentifier: 
+  Sentences:
+  - "\uB4DC\uB514\uC5B4! 4.5\uAC1C\uC6D4\uAC04 \uC2A4\uD30C\uB974\uD0C0 \uD589\uAD70\uC744
+    \uB9C8\uCCE4\uB2E4!"
+  - "\uBB34\uB824 9 to 9! \uD558\uB8E8 12\uC2DC\uAC04! \uB3D9\uC548 \uAC08\uACE0
+    \uB2E6\uC740 \uB098\uC758 \uCF54\uB529\uC2E4\uB825\uC744 \uBF50\uB0BC\uB54C\uB2E4!"
+  - "\uB098\uB9CC\uC758 \uAC8C\uC784\uC744 \uB9CC\uB4E4\uC5B4\uC11C \uC601\uC564\uB9AC\uCE58\uAC00
+    \uB420\uD14C\uB2E4!"
