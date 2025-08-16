@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace MainBattleScene
 {
@@ -9,6 +10,8 @@ namespace MainBattleScene
     {
         [SerializeField] private MainBattlePlayerCharacter _playerCharacter;
         [SerializeField] private float _innerCoolTimeToDashing;
+        [SerializeField] private ParticleSystem _particleSystem;
+        [SerializeField] private ParticleSystem.EmissionModule _playerDashingParticleSystemEmissionModule;
         
         CancellationTokenSource _playerDashingCancellationTokenSource;
         
@@ -18,6 +21,10 @@ namespace MainBattleScene
         private void Start()
         {
             _playerCharacter = this.GetComponent<MainBattlePlayerCharacter>();
+            
+            _playerDashingParticleSystemEmissionModule = _particleSystem.emission;
+            _playerDashingParticleSystemEmissionModule.enabled = false;
+            
         }
         
         private void Update()
@@ -58,6 +65,22 @@ namespace MainBattleScene
             float dashPower = _playerCharacterAbilityDashStats.DashPower;
             float dashDuration = _playerCharacterAbilityDashStats.DashDuration;
 
+            
+            int randomSFX = Random.Range(0, 2);
+
+            switch (randomSFX)
+            {
+                default:
+                case 0:
+                    Managers.Sound.PlaySFX("Sound/Player Dash/Sword Woosh 3",volume: 1f);
+                    break;
+                
+                case 1:
+                    Managers.Sound.PlaySFX("Sound/Player Dash/Sword Woosh 10",volume: 1f);
+                    break;
+                
+            }
+            
             if (MainBattleSceneManager.Instance.PlayerFeatureConditions[2] == false) // bug Condition;
             {
                 dashPower = _playerCharacterAbilityDashStats.DashBugPower;
@@ -175,6 +198,7 @@ namespace MainBattleScene
         {
             InitializeDashingCancellationTokenSource();
             var cancellationToken = _playerDashingCancellationTokenSource.Token;
+            _playerDashingParticleSystemEmissionModule.enabled = true;
 
             _playerCharacterBasicStats.CanMove = false;
             _playerCharacterBasicStats.IsDashing = true;
@@ -205,6 +229,7 @@ namespace MainBattleScene
             
             _playerCharacterBasicStats.CanMove = true;
             _playerCharacterBasicStats.IsDashing = false;
+            _playerDashingParticleSystemEmissionModule.enabled = false;
             _playerCharacter.SetDodgeAnimation(false);
             
         }
