@@ -86,6 +86,7 @@ namespace MainBattleScene
             if (_endBattleTest == true)
             {
                 _endBattleTest = false;
+                BossManager.RemoveAllBossBehaviours();
                 ReportEndBattle();
             }
 
