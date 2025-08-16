@@ -27,8 +27,7 @@ public class Managers : MonoBehaviour
     private InitBugType _initBugSetting;
     private Dictionary<BattleBugType, InitBugTypeData> _bugDic = new();
     public InitBugTypeData[] InitBugSetting => _bugDic.Values.ToArray();
-    private Dictionary<BattleBugType, bool> _originBugs = new Dictionary<BattleBugType, bool>();
-    public Dictionary<BattleBugType, bool> OriginBugs { get; set; }
+    public Dictionary<BattleBugType, bool> OriginBugs { get; set; } = new Dictionary<BattleBugType, bool>(); // 초기 버그 설정을 저장하는 딕셔너리
     public bool IsIntro { get; set; } = false; // 인트로 여부
 
 
@@ -98,10 +97,12 @@ public class Managers : MonoBehaviour
             await s_instance._sound.Init();
         }
 
+        s_instance.OriginBugs = new Dictionary<BattleBugType, bool>();
         foreach (var bug in s_instance._initBugSetting.InitBugData) // 초기 버그 설정
         {
             bug.IsBug = true; // 모든 버그를 비활성화
             s_instance._bugDic[bug.Type] = bug;
+            s_instance.OriginBugs[bug.Type] = bug.IsBug; // 초기 버그 상태를 저장
         }
         s_instance.PlayCount = 0;
     }
