@@ -16,13 +16,8 @@ public class UITitle : UIBase
     public override async UniTask ShowAsync(object args = null)
     {
         await base.ShowAsync(args);
+        Managers.Instance.IsIntro = true;
         await _dialog.StartDialog();
-        await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
-        await CloseUI();
-    }
-
-    private async void OnUpdate()
-    {
         await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
         await CloseUI();
     }

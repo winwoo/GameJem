@@ -16,10 +16,9 @@ public class UISteam : UIBase
 
     private async void OnClickClose()
     {
-        var datas = Managers.Instance.InitBugSetting.InitBugData;
+        var datas = Managers.Instance.InitBugSetting;
         // datas 의 모든 IsBug가 false인지
         bool allBugsFixed = datas.All(data => !data.IsBug);
-        Managers.Instance.PlayCount++;
         if (Managers.Instance.PlayCount < 3 && allBugsFixed == false)
         {
             await Managers.UI.Open<UIForlder>();
@@ -28,6 +27,7 @@ public class UISteam : UIBase
         {
             await Managers.UI.Open<UIEnding>();
         }
+        Managers.Instance.PlayCount++;
         await CloseUI();
     }
 }

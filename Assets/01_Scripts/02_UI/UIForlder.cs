@@ -38,14 +38,14 @@ public class UIForlder : UIBase
         _btnBack1.onClick.AddListener(OnBack);
         _btnBack2.onClick.AddListener(OnBack);
         _btnUpdate.onClick.AddListener(OnUpdate);
-        _originBugs = Managers.Instance.InitBugSetting.InitBugData
+        _originBugs = Managers.Instance.InitBugSetting
             .ToDictionary(data => data.Type, data => data.IsBug);
         CreateFolder(_folder, _content.transform);
     }
 
     private void CreateFolder(UICFolder origin, Transform parent)
     {
-        var settings = Managers.Instance.InitBugSetting.InitBugData;
+        var settings = Managers.Instance.InitBugSetting;
 
         for(int i = 0; i < settings.Length; i++)
         {
@@ -137,7 +137,7 @@ public class UIForlder : UIBase
 
     private async void OnUpdate()
     {
-        var datas = Managers.Instance.InitBugSetting.InitBugData;
+        var datas = Managers.Instance.InitBugSetting;
         bool noModified = true;
         foreach (var data in datas)
         {
@@ -174,7 +174,7 @@ public class UIForlder : UIBase
             origin += $"{data.Key}: {data.Value}\n";
         }
         string current = "";
-        foreach (var data in Managers.Instance.InitBugSetting.InitBugData)
+        foreach (var data in Managers.Instance.InitBugSetting)
         {
             current += $"{data.Type}: {data.IsBug}\n";
         }

@@ -26,7 +26,8 @@ public class Managers : MonoBehaviour
     [SerializeField]
     private InitBugType _initBugSetting;
     private Dictionary<BattleBugType, InitBugTypeData> _bugDic = new();
-    public InitBugType InitBugSetting => _initBugSetting;
+    public InitBugTypeData[] InitBugSetting => _bugDic.Values.ToArray();
+    public bool IsIntro { get; set; } = false; // 인트로 여부
 
     public int PlayCount { get; set; } = 0; // 플레이 횟수
 
