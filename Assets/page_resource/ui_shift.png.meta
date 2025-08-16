@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 96c1a0475c4984862a0fd6f1f5fdb92e
+guid: 3df6ceb317907614abfb5ac41912abf1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7753409757765140576
-    second: gui_boss_hpBar_0
+      213: -3577680291375601466
+    second: ui_shift_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gui_boss_hpBar_0
+      name: ui_shift_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 19
-        width: 843
-        height: 212
+        x: 0
+        y: 80
+        width: 512
+        height: 352
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0af7c5697ea566490800000000000000
-      internalID: -7753409757765140576
+      spriteID: 6c824a8fab6895ec0800000000000000
+      internalID: -3577680291375601466
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      gui_boss_hpBar_0: -7753409757765140576
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

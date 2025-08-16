@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 96c1a0475c4984862a0fd6f1f5fdb92e
+guid: 2162682608941b74c98ac1ce98c683ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7753409757765140576
-    second: gui_boss_hpBar_0
+      213: -748340570936250456
+    second: ui_wasd_0
+  - first:
+      213: -1587594994697169157
+    second: ui_wasd_1
+  - first:
+      213: -5589865204466184953
+    second: ui_wasd_2
+  - first:
+      213: 4975608917514999869
+    second: ui_wasd_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +105,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gui_boss_hpBar_0
+      name: ui_wasd_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 19
-        width: 843
-        height: 212
+        x: 177
+        y: 266
+        width: 158
+        height: 158
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0af7c5697ea566490800000000000000
-      internalID: -7753409757765140576
+      spriteID: 8afe452373c5d95f0800000000000000
+      internalID: -748340570936250456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_wasd_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 88
+        width: 157
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf613e583cab7f9e0800000000000000
+      internalID: -1587594994697169157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_wasd_2
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 88
+        width: 158
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d0a71863fcc62b0800000000000000
+      internalID: -5589865204466184953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_wasd_3
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 88
+        width: 157
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d385fb5d2f9ec0540800000000000000
+      internalID: 4975608917514999869
       vertices: []
       indices: 
       edges: []
@@ -147,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      gui_boss_hpBar_0: -7753409757765140576
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
