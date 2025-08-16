@@ -181,6 +181,7 @@ namespace MainBattleScene
             float innerTime = 0;
             
             _playerCharacter.MovePlayerCharacter(dashingVector);
+            _playerCharacter.SetDodgeAnimation(true);
             
             // Maximum 1000 frame, expected as 10~20 sec
             for (int i = 0; i < 1000; i++)
@@ -204,6 +205,7 @@ namespace MainBattleScene
             
             _playerCharacterBasicStats.CanMove = true;
             _playerCharacterBasicStats.IsDashing = false;
+            _playerCharacter.SetDodgeAnimation(false);
             
         }
         
