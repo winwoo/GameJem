@@ -21,7 +21,7 @@ public class BossBehaviour : MonoBehaviour
 
     public virtual void UpdateBehaviour()
     {
-        Debug.Log($"Boss {this.GetType().Name} is updating its behaviour.");
+        //Debug.Log($"Boss {this.GetType().Name} is updating its behaviour.");
     }
 
     public virtual void StopBehaviour()
