@@ -58,14 +58,13 @@ namespace MainBattleScene
 
             AwakeUpdate();
 
-
-
-
         }
 
         void Start()
         {
             StartUpdate();
+
+            Managers.Sound.PlayBGM("Omega Sector (BossBattle)").Forget();
         }
 
         void Update()
