@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Boss: {fileID: 3731740449678667291}
   BossBasicStats:
-    MaxHealth: 1000
-    CurrentHealth: 1000
+    MaxHealth: 50
+    CurrentHealth: 50
     BossMoveSpeed: 2
     CanMove: 1
   BossDefaultMoveStats:

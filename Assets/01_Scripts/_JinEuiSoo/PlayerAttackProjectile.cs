@@ -16,6 +16,7 @@ namespace MainBattleScene
         public void Initialize(Vector3 directionToward, float speed, int damage, float lifeTime)
         {
             _directionToward = directionToward;
+            _directionToward.y = 0;
             _speed = speed;
             _damage = damage;
             _lifeTime = lifeTime;
@@ -50,7 +51,7 @@ namespace MainBattleScene
                 return;
             }
             
-            
+            mainBattleBoss.TakeDamage(_damage);
             
         }
     }

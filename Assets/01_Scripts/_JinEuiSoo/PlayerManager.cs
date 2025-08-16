@@ -7,6 +7,9 @@ namespace MainBattleScene
     {
         public MainBattlePlayerCharacter.PlayerCharacterBasicStats PlayerCharacterBasicStats;
         public MainBattlePlayerCharacter.PlayerCharacterAttackStats PlayerCharacterAttackStats;
+        public MainBattlePlayerCharacter.PlayerCharacterAbilityDashStats PlayerCharacterAbilityDashStats;
+        public MainBattlePlayerCharacter.PlayerCharacterAbilitySpecialAStats PlayerCharacterAbilitySpecialAStats;
+        public MainBattlePlayerCharacter.PlayerCharacterAbilitySpecialBStats PlayerCharacterAbilitySpecialBStats;
         
         public MainBattlePlayerCharacter PlayerCharacter;
 
