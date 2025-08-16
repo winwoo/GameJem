@@ -48,10 +48,17 @@ MonoBehaviour:
     MaxHealth: 30
     CurrentHealth: 30
     PlayerMoveSpeed: 5
+    MouseHitAdjust: {x: 0, y: 0.5, z: 0}
     CanMove: 1
+    CanDashing: 1
+    IsDashing: 0
   PlayerCharacterAttackStats:
     ProjectileSpeed: 10
     ProjectileDamage: 10
     ProjectileLifeTime: 10
     ProjectileSpawnRelatedPosition: {x: 0, y: 0.5, z: 0}
+  PlayerCharacterAbilityDashStats:
+    DashPower: 10
+    DashDuration: 1
+    DashCooldown: 3
   PlayerCharacter: {fileID: 0}

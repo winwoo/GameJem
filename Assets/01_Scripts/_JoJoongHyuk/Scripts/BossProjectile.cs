@@ -45,5 +45,7 @@ public class BossProjectile : MonoBehaviour
         {
             return;
         }
+        
+        mainBattlePlayerCharacter.PlayerCharacterGetDamage(_damage);
     }
 }

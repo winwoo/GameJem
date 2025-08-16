@@ -52,16 +52,31 @@ namespace MainBattleScene
         {
             UpdateUpdate();
 
+            #region End Battle Condition Check
+
+            if (PlayerManager.PlayerCharacterBasicStats.CurrentHealth <= 0)
+            {
+                _endBattleTest = true;
+            }
+
+            if (BossManager.BossBasicStats.CurrentHealth <= 0)
+            {
+                _endBattleTest = true;
+            }
+
             if (_endBattleTest == true)
             {
+                _endBattleTest = false;
                 ReportEndBattle();
             }
+
+            #endregion
         }
 
         // Condition, Boss or Player Health 0
         public void ReportEndBattle()
         {
-            
+            Debug.Log("Call Game End");
         }
         
     }
