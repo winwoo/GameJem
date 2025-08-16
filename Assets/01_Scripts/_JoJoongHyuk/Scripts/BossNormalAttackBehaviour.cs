@@ -86,6 +86,8 @@ public class BossNormalAttackBehaviour : BossBehaviour
 
         if (randomProjectile.IsFixedPosition)
         {
+            Managers.Sound.PlaySFX(MainBattleSceneManager.Instance.BossManager.BossAttack2AudioClipName).Forget();
+
             foreach (var attackPoint in _attackPoints)
             {
                 var spawnedProjectile = Instantiate(randomProjectile, attackPoint.position, attackPoint.rotation).GetComponent<BossProjectile>();
@@ -100,6 +102,9 @@ public class BossNormalAttackBehaviour : BossBehaviour
         }
         else
         {
+            Managers.Sound.PlaySFX(MainBattleSceneManager.Instance.BossManager.BossAttack1AudioClipName).Forget();
+
+
             foreach (var attackPoint in _attackPoints)
             {
                 var spawnedProjectile = Instantiate(randomProjectile, attackPoint.position, attackPoint.rotation).GetComponent<BossProjectile>();

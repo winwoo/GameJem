@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using MainBattleScene;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,14 @@ public enum BossBehaviourType
 
 public class BossManager : MonoBehaviour
 {
+    [Header("Boss Audio Clip Names")]
+    public string BossStartAudioClipName;
+    public string BossHitAudioClipName;
+    public string BossDeathAudioClipName;
+    public string BossAttack1AudioClipName;
+    public string BossAttack2AudioClipName;
+
+    [Space(10)]    
     public MainBattleBoss Boss;
 
     public MainBattleBoss.BossBasicStats BossBasicStats;
@@ -22,6 +31,8 @@ public class BossManager : MonoBehaviour
     [SerializeField]
     private List<BossBehaviour> _currentActiveBossBehaviours = new List<BossBehaviour>();
 
+    public Transform ToBeRemovedTransform;
+
     private void Start()
     {
         if (Managers.Instance.IsBug(BattleBugType.BossHp))
@@ -29,11 +40,12 @@ public class BossManager : MonoBehaviour
             BossBasicStats.IsBugMode = true;
         }
 
-        //Test
         for (int i = 0; i < 2; i++)
         {
             AddBossBehaviour(i);
         }
+
+        Managers.Sound.PlaySFX(BossStartAudioClipName).Forget();
     }
 
     void Update()
