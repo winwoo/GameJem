@@ -45,7 +45,7 @@ public class BossProjectile : MonoBehaviour
         if (_linkedParticleSystem != null)
         {
             _linkedParticleSystem.Play();
-            _linkedParticleSystem.transform.SetParent(null);
+            _linkedParticleSystem.transform.SetParent(MainBattleSceneManager.Instance.BossManager.ToBeRemovedTransform);
         }
 
         if (collider.TryGetComponent<MainBattlePlayerCharacter>(out var mainBattlePlayerCharacter))
