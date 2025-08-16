@@ -10,10 +10,12 @@ public class BossProjectile : MonoBehaviour
         [SerializeField] public bool IsFixedPosition = false;
         private float _fixedY;
 
+        [SerializeField] private ParticleSystem _linkedParticleSystem;
+
         private void Start()
-        {
-            _fixedY = transform.position.y;
-        }
+    {
+        _fixedY = transform.position.y;
+    }
 
         private void Update()
     {
@@ -45,6 +47,11 @@ public class BossProjectile : MonoBehaviour
             return;
         }
 
+        if (_linkedParticleSystem != null)
+        {
+            _linkedParticleSystem.Play();
+            _linkedParticleSystem.transform.SetParent(null);
+        }
         mainBattlePlayerCharacter.PlayerCharacterGetDamage(_damage);
         Destroy(this.gameObject);
     }
