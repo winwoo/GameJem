@@ -67,7 +67,7 @@ public class BossNormalAttackBehaviour : BossBehaviour
         }
         else
         {
-            var spawnedProjectile = Instantiate(randomProjectile, transform.position, randomAttackPoint.transform.rotation).GetComponent<BossProjectile>();
+            var spawnedProjectile = Instantiate(randomProjectile, randomAttackPoint.transform.position, randomAttackPoint.transform.rotation).GetComponent<BossProjectile>();
 
             Vector3 direction = randomAttackPoint.position - transform.position;
             direction.y = transform.position.y;
