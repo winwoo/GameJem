@@ -33,6 +33,11 @@ namespace MainBattleScene
 
         private void Start()
         {
+            bool[] playerFeatureConditions = MainBattleSceneManager.Instance.PlayerFeatureConditions;
+            playerFeatureConditions[0] = !Managers.Instance.IsBug(BattleBugType.PlayerMove);
+            playerFeatureConditions[1] = !Managers.Instance.IsBug(BattleBugType.PlayerAttack);
+            playerFeatureConditions[2] = !Managers.Instance.IsBug(BattleBugType.PlayerDash);
+
             _camera = Camera.main;
             
             _manager = MainBattleSceneManager.Instance;
@@ -52,6 +57,7 @@ namespace MainBattleScene
         void SetPlayerRunOrIdleAnimation()
         {
             Vector3 playerCurrentVelocity = _rigidbody.linearVelocity;
+            playerCurrentVelocity.y = 0f;
             
             SetPlayerRotation(playerCurrentVelocity);
             
@@ -139,6 +145,8 @@ namespace MainBattleScene
             {
                 return;
             }
+            
+            _animator.SetTrigger("AttackTrigger");
             
             GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
             projectileGameObject.transform.position =
@@ -364,6 +372,9 @@ namespace MainBattleScene
             PlayerBasicStats.CurrentHealth -= damage;
 
             MainBattleSceneManager.Instance.UpdatePlayerHealthUI();
+            HitText hitText = Instantiate(MainBattleSceneManager.Instance.HitText, MainBattleSceneManager.Instance.PlayerHitTextSpawnPoint.position, Quaternion.identity);
+            hitText.transform.SetParent(MainBattleSceneManager.Instance.PlayerHitTextSpawnPoint);
+            hitText.ShowHitText(false);
 
             // Check And Report End Battle
             if (PlayerBasicStats.CurrentHealth <= 0)

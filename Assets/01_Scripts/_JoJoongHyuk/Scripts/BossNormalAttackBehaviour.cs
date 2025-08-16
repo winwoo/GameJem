@@ -80,7 +80,7 @@ public class BossNormalAttackBehaviour : BossBehaviour
 
     private void SpawnProjectile()
     {
-        Debug.Log($"Spawning projectile for {this.GetType().Name}");
+        //Debug.Log($"Spawning projectile for {this.GetType().Name}");
         BossProjectile randomProjectile = _bossProjectiles[Random.Range(0, _bossProjectiles.Length)];
         Transform randomAttackPoint = _attackPoints[Random.Range(0, _attackPoints.Length)];
 

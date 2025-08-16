@@ -5,8 +5,12 @@ public class SceneTitle : SceneBase
 {
     protected async override UniTask Init()
     {
-        //await Managers.UI.Open<UITitle>();
-        await Managers.UI.Open<UIForlder>();
+        if (!Managers.Instance.IsIntro)
+        {
+            Managers.Instance.IsIntro = true; // 인트로 여부 설정
+            await Managers.UI.Open<UITitle>();
+        }
+        //await Managers.UI.Open<UIForlder>();
         //await Managers.UI.Open<UISystem>();
     }
 

@@ -24,8 +24,11 @@ namespace MainBattleScene
         [Header("Hp UI")]
         public RectTransform PlayerHpBar;
         public UnityEngine.UI.Image PlayerHpBarImage;
+        public Transform PlayerHitTextSpawnPoint;
         public RectTransform BossHpBar;
         public UnityEngine.UI.Image BossHpBarImage;
+        public Transform BossHitTextSpawnPoint;
+        public HitText HitText;
 
         private void Awake()
         {
@@ -55,14 +58,13 @@ namespace MainBattleScene
 
             AwakeUpdate();
 
-
-
-
         }
 
         void Start()
         {
             StartUpdate();
+
+            Managers.Sound.PlayBGM("Omega Sector (BossBattle)").Forget();
         }
 
         void Update()
