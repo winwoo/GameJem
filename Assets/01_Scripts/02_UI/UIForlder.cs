@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,9 @@ public class UIForlder : UIBase
     [SerializeField]
     [Link]
     private Button _btnUpdate;
+    [SerializeField]
+    [Link]
+    private TextMeshProUGUI _textDesc;
 
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
@@ -40,6 +44,7 @@ public class UIForlder : UIBase
         Managers.Instance.OriginBugs = Managers.Instance.InitBugSetting
             .ToDictionary(data => data.Type, data => data.IsBug);
         CreateFolder(_folder, _content.transform);
+        _textDesc.gameObject.SetActive(false); // 설명 텍스트 비활성화
     }
 
     private void CreateFolder(UICFolder origin, Transform parent)
@@ -109,6 +114,7 @@ public class UIForlder : UIBase
         }
         _selectFolder.EnterFolder(OnExitFolder);
         _btnUpdate.gameObject.SetActive(false); // 업데이트 버튼 비활성화
+        _textDesc.gameObject.SetActive(true);
     }
 
     private void OnExitFolder(UICFolder exitFolder)
@@ -121,6 +127,7 @@ public class UIForlder : UIBase
             folder.gameObject.SetActive(true);
         }
         _btnUpdate.gameObject.SetActive(true); // 업데이트 버튼 활성화
+        _textDesc.gameObject.SetActive(false);
         DebugPrint();
     }
 

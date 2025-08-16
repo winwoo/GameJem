@@ -1,5 +1,7 @@
 using Client;
 using Cysharp.Threading.Tasks;
+using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -19,6 +21,9 @@ public class UISteam : UIBase
     [SerializeField]
     [Link]
     private RectTransform _texts;
+    [SerializeField]
+    [Link]
+    private UICDialog _dialog;
 
     [SerializeField]
     private Color _goodColor;
@@ -26,6 +31,9 @@ public class UISteam : UIBase
     private Color _neutralColor;
     [SerializeField]
     private Color _badColor;
+
+    [SerializeField]
+    private List<DialogData> _dialogData;
 
     private string[] _scoreText = new string[]
     {
@@ -36,27 +44,29 @@ public class UISteam : UIBase
         "매우 긍정적",
         "압도적 긍정적"
     };
+    private int _afterCount = 0;
     public override void OnCreate(object ctx)
     {
         base.OnCreate(ctx);
-        _btnClose.onClick.AddListener(OnClickClose);
 
         // value가 false인 count
         int beforeCount = Managers.Instance.OriginBugs.Count(data => !data.Value);
-        int afterCount = Managers.Instance.InitBugSetting.Count(data => !data.IsBug);
+        _afterCount = Managers.Instance.InitBugSetting.Count(data => !data.IsBug);
 
         SetScoreText(beforeCount, _textBefore);
-        SetScoreText(afterCount, _textAfter);
+        SetScoreText(_afterCount, _textAfter);
     }
 
     public override async UniTask ShowAsync(object args = null)
     {
         await base.ShowAsync(args);
-        while(_texts.anchoredPosition.y < 50)
+        while(_texts.anchoredPosition.y < 80 && _afterCount > 0)
         {
             await UniTask.Yield();
             _texts.anchoredPosition += new Vector2(0, 30 * Time.deltaTime);
         }
+        await _dialog.StartDialog(_dialogData[_afterCount]);
+        OnClickClose();
     }
 
     private void SetScoreText(int count, TextMeshProUGUI label)
