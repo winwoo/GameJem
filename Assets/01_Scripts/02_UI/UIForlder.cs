@@ -109,6 +109,7 @@ public class UIForlder : UIBase
             folder.gameObject.SetActive(false);
         }
         _selectFolder.EnterFolder(OnExitFolder);
+        _btnUpdate.gameObject.SetActive(false); // 업데이트 버튼 비활성화
     }
 
     private void OnExitFolder(UICFolder exitFolder)
@@ -120,6 +121,7 @@ public class UIForlder : UIBase
 
             folder.gameObject.SetActive(true);
         }
+        _btnUpdate.gameObject.SetActive(true); // 업데이트 버튼 활성화
     }
 
     private void OnBack()
