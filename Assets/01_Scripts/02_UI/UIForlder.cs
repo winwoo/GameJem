@@ -4,6 +4,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,14 +31,15 @@ public class UIForlder : UIBase
     private List<UICFolder> _folders = new List<UICFolder>();
     private UICFolder _selectFolder;
     private DateTime _selectTime;
-    private List<InitBugTypeData> _originBugs;
+    private Dictionary<BattleBugType, bool> _originBugs = new Dictionary<BattleBugType, bool>();
     public override void OnCreate(object ctx)
     {
         base.OnCreate(ctx);
         _btnBack1.onClick.AddListener(OnBack);
         _btnBack2.onClick.AddListener(OnBack);
         _btnUpdate.onClick.AddListener(OnUpdate);
-        _originBugs = Managers.Instance.InitBugSetting.InitBugData.ToList();
+        _originBugs = Managers.Instance.InitBugSetting.InitBugData
+            .ToDictionary(data => data.Type, data => data.IsBug);
         CreateFolder(_folder, _content.transform);
     }
 
@@ -130,22 +132,40 @@ public class UIForlder : UIBase
         _selectFolder.ExitFolder();
     }
 
-    private void OnUpdate()
+    private async void OnUpdate()
     {
+        DebugPrint();
         var datas = Managers.Instance.InitBugSetting.InitBugData;
         bool noModified = true;
         foreach (var data in datas)
         {
-            if (data.IsBug != _originBugs.Find(x => x.Type == data.Type).IsBug)
-            {
-                noModified = false;
-                break;
-            }
+            if(_originBugs[data.Type] == data.IsBug)
+                continue;
+
+            noModified = false;
+            break;
         }
 
         if (noModified)
         {
             return;
         }
+
+        await Managers.Scene.LoadSceneAsync(Define.Scene.Game);
+    }
+
+    private void DebugPrint()
+    {
+        string origin = "";
+        foreach (var data in _originBugs)
+        {
+            origin += $"{data.Key}: {data.Value}\n";
+        }
+        string current = "";
+        foreach (var data in Managers.Instance.InitBugSetting.InitBugData)
+        {
+            current += $"{data.Type}: {data.IsBug}\n";
+        }
+        Debug.Log($"Origin Bugs:\n{origin}\nCurrent Bugs:\n{current}");
     }
 }

@@ -59,6 +59,7 @@ public class UICFolder : MonoBehaviour
         foreach (var file in _files)
         {
             file.gameObject.SetActive(true); // 파일 활성화
+            file.SetSelct(false); // 선택 상태 초기화
         }
         _onExitFolder = onExitFolder;
         SetActiveFolderComponents(false);
@@ -87,6 +88,10 @@ public class UICFolder : MonoBehaviour
 
     private void OnClickFile(UICFile file)
     {
+        foreach (var f in _files)
+        {
+            f.SetSelct(false); // 모든 파일의 선택 상태 초기화
+        }
         _data.IsBug = file.IsBug;
     }
 

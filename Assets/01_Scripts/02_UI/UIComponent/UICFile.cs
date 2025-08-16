@@ -44,15 +44,12 @@ public class UICFile : MonoBehaviour
     {
         if (_selectTime != default && (DateTime.Now - _selectTime).TotalSeconds < 0.5f)
         {
-            // 더블 클릭 처리
-            SetSelct(false);
-
             UICode uiCode = await Managers.UI.Open<UICode>();
             uiCode.SetCode(_codeImg);
             return;
         }
         _selectTime = DateTime.Now;
-        SetSelct(true);
         _onClickFile?.Invoke(this);
+        SetSelct(true);
     }
 }
