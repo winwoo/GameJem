@@ -13,6 +13,12 @@ namespace MainBattleScene
 
         [SerializeField] private bool _isInitialize;
         
+        
+        [SerializeField] ParticleSystem _projectileEffectParticleSystem;
+        [SerializeField] GameObject _projectileExplosionEffect;
+
+        private bool _canTranslate = true;
+        
         public void Initialize(Vector3 directionToward, float speed, int damage, float lifeTime)
         {
             _directionToward = directionToward;
@@ -38,21 +44,37 @@ namespace MainBattleScene
             {
                 Destroy(this.gameObject);
             }
-            
-            transform.Translate(_directionToward * (_speed * Time.deltaTime));
+
+            if (_canTranslate == true)
+            {
+                transform.Translate(_directionToward * (_speed * Time.deltaTime));
+            }
             
             
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<MainBattleBoss>(out var mainBattleBoss) == false)
+            if (other.TryGetComponent<MainBattlePlayerCharacter>(out var mainBattlePlayerCharacter) == true)
             {
                 return;
             }
             
-            mainBattleBoss.TakeDamage(_damage);
-            Destroy(this.gameObject);
+            if (other.TryGetComponent<MainBattleBoss>(out var mainBattleBoss) == true)
+            {
+                mainBattleBoss.TakeDamage(_damage);
+            }
+
+            GameObject explosionEffectGo = Instantiate(_projectileExplosionEffect);
+            explosionEffectGo.transform.position = transform.position;
+            
+            var emissionModule = _projectileEffectParticleSystem.emission;
+            emissionModule.enabled = false;
+
+            _canTranslate = false;
+            
+            Destroy(explosionEffectGo, 10f);
+            Destroy(this.gameObject, 0.35f);
             
         }
     }

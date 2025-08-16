@@ -3,6 +3,7 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
+using Random = System.Random;
 
 namespace MainBattleScene
 {
@@ -17,6 +18,8 @@ namespace MainBattleScene
         [Header("Debug")] 
         [SerializeField] private Vector3 _directionToMouseHit; 
         [SerializeField] Camera _camera;
+
+        [SerializeField] private float _innerAttackCoolTime;
         
         public Vector3 DirectionToMouseHit => _directionToMouseHit + PlayerBasicStats.MouseHitAdjust;
         
@@ -141,11 +144,38 @@ namespace MainBattleScene
         // Debug Case 1 -> Player will attack to the wrong position 
         void ActionPlayerAttack()
         {
-            if (Input.GetMouseButtonDown(0) == false)
+            _innerAttackCoolTime -= Time.deltaTime;
+
+            if (_innerAttackCoolTime > 0f)
             {
                 return;
             }
             
+            if (Input.GetMouseButtonDown(0) == false)
+            {
+                return;
+            }
+
+            _innerAttackCoolTime = PlayerAttackStats.ProjectileAttackDelay;
+
+
+
+            int randomSFX = UnityEngine.Random.Range(0, 3);
+
+            switch (randomSFX)
+            {
+                default:
+                case 0:
+                    Managers.Sound.PlaySFX("Sound/Player Shot (random one)/Spear throw 6",volume: 1f);
+                    break;
+                case 1:
+                    Managers.Sound.PlaySFX("Sound/Player Shot (random one)/Spear throw 7",volume: 1f);
+                    break;
+                case 2:
+                    Managers.Sound.PlaySFX("Sound/Player Shot (random one)/Spear throw",volume: 1f);
+                    break;
+            }
+
             _animator.SetTrigger("AttackTrigger");
             
             GameObject projectileGameObject = Instantiate(_playerAttackProjectile, _projectileGroup.transform);
@@ -431,7 +461,8 @@ namespace MainBattleScene
             [SerializeField] public int ProjectileDamage;
             [SerializeField] public float ProjectileLifeTime;
             [SerializeField] public Vector3 ProjectileSpawnRelatedPosition;
-            
+            [SerializeField] public float ProjectileAttackDelay = 0.2f;
+
         }
 
         [System.Serializable]
