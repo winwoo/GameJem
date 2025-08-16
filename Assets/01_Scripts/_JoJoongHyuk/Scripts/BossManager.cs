@@ -24,7 +24,7 @@ public class BossManager : MonoBehaviour
 
     private void Start()
     {
-        if(Managers.Instance.InitBugSetting.InitBugData[3].IsBug)
+        if (Managers.Instance.IsBug(BattleBugType.BossHp))
         {
             BossBasicStats.IsBugMode = true;
         }
@@ -52,11 +52,11 @@ public class BossManager : MonoBehaviour
         {
             case 0:
                 behaviour = Boss.gameObject.AddComponent<BossDefaultMoveBehaviour>();
-                behaviour.IsBugMode = Managers.Instance.InitBugSetting.InitBugData[3].IsBug;
+                behaviour.IsBugMode = Managers.Instance.IsBug(BattleBugType.BossMove);
                 break;
             case 1:
                 behaviour = Boss.gameObject.AddComponent<BossNormalAttackBehaviour>();
-                behaviour.IsBugMode = Managers.Instance.InitBugSetting.InitBugData[4].IsBug;
+                behaviour.IsBugMode = Managers.Instance.IsBug(BattleBugType.BossAttack);
                 break;
             default:
                 Debug.LogWarning("Unknown Boss Behaviour Type");

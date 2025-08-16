@@ -17,10 +17,6 @@ public class BattleDesignManager : BaseManager
     private readonly Dictionary<BattleBugType, bool> _battleBugDic = new Dictionary<BattleBugType, bool>();
     public override async UniTask Init()
     {
-        foreach(InitBugTypeData data in Managers.Instance.InitBugSetting.InitBugData)
-        {
-            _battleBugDic[data.Type] = data.IsBug;
-        }
         await UniTask.CompletedTask;
     }
 
