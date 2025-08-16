@@ -3,19 +3,21 @@ using UnityEngine;
 
 public class BossProjectile : MonoBehaviour
 {
-        [SerializeField] private Vector3 _directionToward;
-        [SerializeField] public float Speed;
-        [SerializeField] private int _damage;
-        [SerializeField] private float _lifeTime;
-        [SerializeField] public bool IsFixedPosition = false;
-        private float _fixedY;
+    [SerializeField] private Vector3 _directionToward;
+    [SerializeField] public float Speed;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _lifeTime;
+    [SerializeField] public bool IsFixedPosition = false;
+    private float _fixedY;
 
-        private void Start()
-        {
-            _fixedY = transform.position.y;
-        }
+    [SerializeField] private ParticleSystem _linkedParticleSystem;
 
-        private void Update()
+    private void Start()
+    {
+        _fixedY = transform.position.y;
+    }
+
+    private void Update()
     {
         _lifeTime -= Time.deltaTime;
 
@@ -24,7 +26,7 @@ public class BossProjectile : MonoBehaviour
             //effect or sound play code
             Destroy(this.gameObject);
         }
-        
+
         if (!IsFixedPosition)
         {
             transform.Translate(_directionToward * (Speed * Time.deltaTime));
@@ -33,19 +35,24 @@ public class BossProjectile : MonoBehaviour
         }
     }
 
-        public void SetDirection(Vector3 direction)
-        {
-            _directionToward = direction;
-        }
+    public void SetDirection(Vector3 direction)
+    {
+        _directionToward = direction;
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.TryGetComponent<MainBattlePlayerCharacter>(out var mainBattlePlayerCharacter) == false)
+        if (_linkedParticleSystem != null)
         {
-            return;
+            _linkedParticleSystem.Play();
+            _linkedParticleSystem.transform.SetParent(null);
         }
 
-        mainBattlePlayerCharacter.PlayerCharacterGetDamage(_damage);
+        if (collider.TryGetComponent<MainBattlePlayerCharacter>(out var mainBattlePlayerCharacter))
+        {
+            mainBattlePlayerCharacter.PlayerCharacterGetDamage(_damage);
+        }
+
         Destroy(this.gameObject);
     }
 }
