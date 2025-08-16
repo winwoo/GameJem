@@ -31,7 +31,7 @@ public class BossDefaultMoveBehaviour : BossBehaviour
         }
         else
         {
-            _moveSpeed = 0.5f;
+            _moveSpeed = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.MoveSpeed;
             _rotateSpeed = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.RotationSpeed;
             _retargetTime = MainBattleSceneManager.Instance.BossManager.BossDefaultMoveStats.RetargetTime;
         }
