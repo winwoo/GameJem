@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -61,7 +62,7 @@ namespace MainBattleScene
         // Condition, Boss or Player Health 0
         public void ReportEndBattle()
         {
-            
+            Managers.Scene.LoadSceneAsync(Define.Scene.Lobby).Forget();
         }
         
     }

@@ -21,6 +21,12 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound => Instance._sound;
     #endregion
 
+    #region Contents
+    private readonly BattleDesignManager _battleDesign = new BattleDesignManager();
+
+    public static BattleDesignManager BattleDesign => Instance._battleDesign;
+    #endregion
+
     private async void Awake()
     {
         await Init();
@@ -83,6 +89,7 @@ public class Managers : MonoBehaviour
             await s_instance._scene.Init();
             await s_instance._ui.Init();
             await s_instance._sound.Init();
+            await s_instance._battleDesign.Init();
         }
     }
 
@@ -94,6 +101,7 @@ public class Managers : MonoBehaviour
         await s_instance._data.Dispose();
         await s_instance._resource.Dispose();
         await s_instance._sound.Dispose();
+        await s_instance._battleDesign.Dispose();
         s_instance = null;
     }
     #endregion
