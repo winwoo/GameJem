@@ -61,6 +61,7 @@ public class UISteam : UIBase
     public override async UniTask ShowAsync(object args = null)
     {
         await base.ShowAsync(args);
+        await Managers.Sound.PlayBGM("Kerning City (Development Folder)");
         _dialog.gameObject.SetActive(false);
         while (_texts.anchoredPosition.y < 80 && _afterCount > 0)
         {

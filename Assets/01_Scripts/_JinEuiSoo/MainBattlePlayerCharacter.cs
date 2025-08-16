@@ -1,7 +1,6 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
 using Random = System.Random;
 
