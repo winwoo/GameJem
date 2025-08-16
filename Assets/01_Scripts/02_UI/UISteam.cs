@@ -52,11 +52,10 @@ public class UISteam : UIBase
     public override async UniTask ShowAsync(object args = null)
     {
         await base.ShowAsync(args);
-        while(_texts.localPosition.y < 50)
+        while(_texts.anchoredPosition.y < 50)
         {
             await UniTask.Yield();
-            _texts.localPosition += new Vector3(0, 10 * Time.deltaTime, 0);
-
+            _texts.anchoredPosition += new Vector2(0, 30 * Time.deltaTime);
         }
     }
 
