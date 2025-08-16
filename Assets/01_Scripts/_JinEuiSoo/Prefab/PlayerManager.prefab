@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCharacterBasicStats:
-    MaxHealth: 30
-    CurrentHealth: 30
+    MaxHealth: 200
+    CurrentHealth: 200
     PlayerMoveSpeed: 5
     MouseHitAdjust: {x: 0, y: 0.5, z: 0}
     CanMove: 1
@@ -57,6 +57,7 @@ MonoBehaviour:
     ProjectileDamage: 10
     ProjectileLifeTime: 10
     ProjectileSpawnRelatedPosition: {x: 0, y: 0.5, z: 0}
+    ProjectileAttackDelay: 0.2
   PlayerCharacterAbilityDashStats:
     DashPower: 10
     DashDuration: 1
