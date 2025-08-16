@@ -87,6 +87,8 @@ namespace MainBattleScene
                 dashDuration = _playerCharacterAbilityDashStats.DashBugDuration;
             }
             
+            
+            
             DashingPlayerCharacter(_playerCharacter.DirectionToMouseHit * dashPower,
                 dashDuration).Forget();
             
@@ -210,9 +212,11 @@ namespace MainBattleScene
             // Maximum 1000 frame, expected as 10~20 sec
             for (int i = 0; i < 1000; i++)
             {
+                await UniTask.WaitForEndOfFrame();
+                
                 if (cancellationToken.IsCancellationRequested == true)
                 {
-                    break;
+                    return;
                 }
                 
                 innerTime += Time.deltaTime;
@@ -223,7 +227,6 @@ namespace MainBattleScene
                 }
                 
                 // Else, Action
-                await UniTask.WaitForEndOfFrame();
 
             }
             
@@ -243,6 +246,18 @@ namespace MainBattleScene
                 _playerDashingCancellationTokenSource = null;
             }
             _playerDashingCancellationTokenSource = new CancellationTokenSource();
+        }
+
+        void OnDestroy()
+        {
+            if (_playerDashingCancellationTokenSource == null)
+            {
+                return;
+            }
+            
+            _playerDashingCancellationTokenSource.Cancel();
+            _playerDashingCancellationTokenSource.Dispose();
+            _playerDashingCancellationTokenSource = null;
         }
         
     }
