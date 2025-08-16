@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,14 +16,18 @@ public class UISteam : UIBase
 
     private async void OnClickClose()
     {
-        if (true)
-        {
-            await Managers.UI.Open<UIEnding>();
-        }
-        else
+        var datas = Managers.Instance.InitBugSetting;
+        // datas 의 모든 IsBug가 false인지
+        bool allBugsFixed = datas.All(data => !data.IsBug);
+        if (Managers.Instance.PlayCount < 3 && allBugsFixed == false)
         {
             await Managers.UI.Open<UIForlder>();
         }
+        else
+        {
+            await Managers.UI.Open<UIEnding>();
+        }
+        Managers.Instance.PlayCount++;
         await CloseUI();
     }
 }

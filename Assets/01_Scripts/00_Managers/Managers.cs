@@ -1,5 +1,8 @@
 using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.Linq;
 
 public class Managers : MonoBehaviour
 {
@@ -20,20 +23,23 @@ public class Managers : MonoBehaviour
     public static UIManager UI => Instance._ui;
     public static SoundManager Sound => Instance._sound;
     #endregion
-
-    #region Contents
-    private readonly BattleDesignManager _battleDesign = new BattleDesignManager();
-
-    public static BattleDesignManager BattleDesign => Instance._battleDesign;
-    #endregion
-
     [SerializeField]
     private InitBugType _initBugSetting;
-    public InitBugType InitBugSetting => _initBugSetting;
+    private Dictionary<BattleBugType, InitBugTypeData> _bugDic = new();
+    public InitBugTypeData[] InitBugSetting => _bugDic.Values.ToArray();
+    public bool IsIntro { get; set; } = false; // 인트로 여부
+
+    public int PlayCount { get; set; } = 0; // 플레이 횟수
 
     private async void Awake()
     {
         await Init();
+        foreach (var bug in _initBugSetting.InitBugData) // 초기 버그 설정
+        {
+            bug.IsBug = true; // 모든 버그를 비활성화
+            _bugDic[bug.Type] = bug;
+        }
+        PlayCount = 0;
     }
 
     private void Start()
@@ -93,7 +99,6 @@ public class Managers : MonoBehaviour
             await s_instance._scene.Init();
             await s_instance._ui.Init();
             await s_instance._sound.Init();
-            await s_instance._battleDesign.Init();
         }
     }
 
@@ -105,8 +110,13 @@ public class Managers : MonoBehaviour
         await s_instance._data.Dispose();
         await s_instance._resource.Dispose();
         await s_instance._sound.Dispose();
-        await s_instance._battleDesign.Dispose();
         s_instance = null;
+    }
+
+    public bool IsBug(BattleBugType type)
+    {
+        _bugDic.TryGetValue(type, out InitBugTypeData data);
+        return data.IsBug;
     }
     #endregion
 }

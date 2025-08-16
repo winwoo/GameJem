@@ -52,6 +52,7 @@ namespace MainBattleScene
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.IsBugMode)
             {
                 MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth += damage;
+                MainBattleSceneManager.Instance.BossHpBar.localScale *= 1.2f;
             }
             else
             {
@@ -59,6 +60,9 @@ namespace MainBattleScene
             }
 
             MainBattleSceneManager.Instance.UpdateBossHealthUI();
+            HitText hitText = Instantiate(MainBattleSceneManager.Instance.HitText, MainBattleSceneManager.Instance.BossHitTextSpawnPoint.position, Quaternion.identity);
+            hitText.transform.SetParent(MainBattleSceneManager.Instance.BossHitTextSpawnPoint);
+            hitText.ShowHitText(MainBattleSceneManager.Instance.BossManager.BossBasicStats.IsBugMode);
 
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth <= 0)
             {
