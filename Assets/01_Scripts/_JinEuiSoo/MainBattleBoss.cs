@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace MainBattleScene
@@ -49,6 +50,8 @@ namespace MainBattleScene
 
         public void TakeDamage(int damage)
         {
+            Managers.Sound.PlaySFX(MainBattleSceneManager.Instance.BossManager.BossHitAudioClipName).Forget();
+
             if (MainBattleSceneManager.Instance.BossManager.BossBasicStats.IsBugMode)
             {
                 MainBattleSceneManager.Instance.BossManager.BossBasicStats.CurrentHealth += damage;
@@ -75,6 +78,8 @@ namespace MainBattleScene
         private void Die()
         {
             Debug.Log($"Boss {this.GetType().Name} has died.");
+            Managers.Sound.PlaySFX(MainBattleSceneManager.Instance.BossManager.BossDeathAudioClipName).Forget();
+
             BossDieAction?.Invoke();
             MainBattleSceneManager.Instance.BossManager.RemoveAllBossBehaviours();
             Destroy(gameObject);
