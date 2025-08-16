@@ -1,5 +1,6 @@
 using Client;
 using Cysharp.Threading.Tasks;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,8 +22,8 @@ public class UICDialog : MonoBehaviour
     private Color _symbolColor;
 
     private string _symbolColorHex;
-    private bool _endSentence = false;
-    private bool _endDialog = false;
+    private int _index = 0;
+    private DateTime _lastClick;
     private void Awake()
     {
         _background.onClick.AddListener(OnClose);
@@ -30,8 +31,7 @@ public class UICDialog : MonoBehaviour
 
     public async UniTask StartDialog(DialogData data = null)
     {
-        _endDialog = false;
-        _endSentence = false;
+        _index = 0;
         _imgArrow.gameObject.SetActive(false);
         if (data != null)
         {
@@ -45,29 +45,33 @@ public class UICDialog : MonoBehaviour
         }
         gameObject.SetActive(true);
 
-        foreach (var sentence in _dialog.Sentences)
+        while (_index < _dialog.Sentences.Count)
         {
-            await DisplaySentence(sentence);
-        }
-
-        _endSentence = true;
-        _imgArrow.gameObject.SetActive(true);
-        while (!_endDialog)
-        {
-            await UniTask.Yield(); // Wait until the dialog is closed
+            DisplaySentence(_index++);
+            _imgArrow.gameObject.SetActive(false);
+            await UniTask.Delay(500);
+            _imgArrow.gameObject.SetActive(true);
+            while (_imgArrow.gameObject.activeSelf)
+            {
+                await UniTask.Yield();
+            }
         }
     }
-    private async UniTask DisplaySentence(string sentence)
+    private void DisplaySentence(int index)
     {
+        string sentence = _dialog.Sentences[index];
         sentence = sentence.SymbolColor("[", "]", _symbolColorHex);
         _dialogText.text = sentence;
-        // Simulate waiting for user input or a delay
-        await UniTask.Delay(2000); // 2 seconds delay for demonstration
     }
     private void OnClose()
     {
-        if (_endSentence == false)
+        if((DateTime.Now - _lastClick).TotalSeconds < 0.5f)
             return;
-        _endDialog = true;
+
+        if (_imgArrow.gameObject.activeSelf == false)
+            return;
+
+        _lastClick = DateTime.Now;
+        _imgArrow.gameObject.SetActive(false);
     }
 }
