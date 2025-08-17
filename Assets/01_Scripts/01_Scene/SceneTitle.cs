@@ -8,7 +8,7 @@ public class SceneTitle : SceneBase
         if (!Managers.Instance.IsIntro)
         {
             Managers.Instance.IsIntro = true; // 인트로 여부 설정
-            await Managers.UI.Open<UITitle>();
+            await Managers.UI.Open<UIMain>();
         }
         //await Managers.UI.Open<UIForlder>();
         //await Managers.UI.Open<UISystem>();
